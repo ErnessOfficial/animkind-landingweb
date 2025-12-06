@@ -1,0 +1,560 @@
+import React, { useState, useEffect } from 'react';
+import {
+  Shield,
+  Users,
+  Brain,
+  CheckCircle2,
+  ArrowRight,
+  Menu,
+  X,
+  Globe,
+  Activity,
+  Lock,
+  HeartHandshake,
+  Play
+} from 'lucide-react';
+import { content } from './content';
+import { Language } from './types';
+import Chatbot from './components/Chatbot';
+
+function App() {
+  const [lang, setLang] = useState<Language>('en');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const [pricingModalOpen, setPricingModalOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const t = content[lang];
+  const BOOKING_URL = "https://calendar.app.google/9kvFWK6CgUiNe3ov5";
+
+  // Handle scroll effect for navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleLang = () => {
+    setLang(prev => prev === 'en' ? 'es' : 'en');
+  };
+
+  const IconMap: Record<string, React.ReactNode> = {
+    "Shield": <Shield className="w-10 h-10 text-[#0dc383]" />,
+    "Users": <Users className="w-10 h-10 text-[#eec843]" />,
+    "Brain": <Brain className="w-10 h-10 text-[#1d4c73]" />,
+  };
+
+  // Helper to parse bold text from description (e.g., **Text**)
+  const renderDescription = (text: string) => {
+    return text.split('\n').map((line, i) => (
+      <span key={i} className="block mb-2 text-balance">
+        {line.split(/(\*\*.*?\*\*)/).map((part, j) => {
+          if (part.startsWith('**') && part.endsWith('**')) {
+            return <strong key={j} className="text-[#1e2c29] font-bold">{part.slice(2, -2)}</strong>;
+          }
+          return part;
+        })}
+      </span>
+    ));
+  };
+
+  return (
+    <div className="min-h-screen bg-[#f1f4f4] text-[#1e2c29] font-sans selection:bg-[#0dc383]/20 selection:text-[#1e2c29] antialiased">
+
+      {/* Navigation - Enhanced with better glassmorphism and transition */}
+      <nav className={`fixed w-full z-40 transition-all duration-300 ease-in-out ${scrolled ? 'bg-white/90 backdrop-blur-xl shadow-md py-2' : 'bg-[#f1f4f4]/50 backdrop-blur-sm py-4 border-b border-transparent'
+        }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div className="flex-shrink-0 flex items-center gap-2 group cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
+              <img
+                src="/icons/animikind-icon.png"
+                alt="AnImiKind Logo"
+                className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                  (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+                }}
+              />
+              <div className="hidden w-10 h-10 rounded-xl bg-gradient-to-br from-[#0dc383] to-[#1d4c73] flex items-center justify-center shadow-lg">
+                <HeartHandshake className="text-white w-6 h-6" />
+              </div>
+              <span className="font-bold text-xl tracking-tight text-[#1e2c29] text-relief">
+                AnImi<span className="text-[#0dc383]">Kind</span>
+              </span>
+            </div>
+
+            {/* Desktop Nav - Optimized Structure */}
+            <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+              <a href="#ai-section" className="text-[#1d4c73] font-medium text-sm lg:text-base hover:text-[#0dc383] transition-colors relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#0dc383] after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">
+                {t.nav.about}
+              </a>
+              <a href="#ecosystem" className="text-[#1d4c73] font-medium text-sm lg:text-base hover:text-[#0dc383] transition-colors relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#0dc383] after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">
+                {t.nav.ecosystem}
+              </a>
+              <a href="#impact" className="text-[#1d4c73] font-medium text-sm lg:text-base hover:text-[#0dc383] transition-colors relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#0dc383] after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">
+                {t.nav.contact}
+              </a>
+              <button onClick={() => setPricingModalOpen(true)} className="text-[#1d4c73] font-medium text-sm lg:text-base hover:text-[#0dc383] transition-colors relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#0dc383] after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">
+                {t.nav.pricing}
+              </button>
+
+              <div className="h-6 w-px bg-[#1d4c73]/20 mx-2"></div>
+
+              <button onClick={toggleLang} className="flex items-center gap-1 text-[#1d4c73] hover:text-[#0dc383] transition-colors uppercase text-sm font-bold tracking-wide">
+                <Globe size={16} />
+                {lang}
+              </button>
+
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-2.5 rounded-full bg-[#1d4c73] text-white text-sm lg:text-base font-bold hover:bg-[#1e2c29] transition-all shadow-lg hover:shadow-[#1d4c73]/30 transform hover:-translate-y-0.5 active:scale-95"
+              >
+                {t.nav.getStarted}
+              </a>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center gap-4">
+              <button onClick={toggleLang} className="text-[#1d4c73] font-bold uppercase text-sm border border-[#1d4c73]/20 px-2 py-1 rounded-md">
+                {lang}
+              </button>
+              <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-[#1d4c73] p-1">
+                {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white/95 backdrop-blur-xl border-b border-[#1d4c73]/10 absolute w-full shadow-xl animate-fade-in-up">
+            <div className="px-4 pt-2 pb-6 space-y-2">
+              <a href="#ai-section" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-4 border-b border-gray-100 text-base font-bold text-[#1d4c73]">{t.nav.about}</a>
+              <a href="#ecosystem" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-4 border-b border-gray-100 text-base font-bold text-[#1d4c73]">{t.nav.ecosystem}</a>
+              <a href="#impact" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-4 border-b border-gray-100 text-base font-bold text-[#1d4c73]">{t.nav.contact}</a>
+              <button onClick={() => { setPricingModalOpen(true); setMobileMenuOpen(false); }} className="block w-full text-left px-3 py-4 border-b border-gray-100 text-base font-bold text-[#1d4c73]">{t.nav.pricing}</button>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full text-center mt-6 px-5 py-4 rounded-xl bg-[#0dc383] text-white font-bold shadow-lg active:scale-95 transition-transform"
+              >
+                {t.nav.getStarted}
+              </a>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section - Improved Typography Proportion */}
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        {/* Animated gradients */}
+        <div className="absolute top-0 right-0 -mr-40 -mt-40 w-[600px] h-[600px] bg-[#0dc383] rounded-full blur-[100px] opacity-10 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 -ml-40 -mb-40 w-[600px] h-[600px] bg-[#1d4c73] rounded-full blur-[100px] opacity-10 animate-pulse delay-100"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-5xl mx-auto flex flex-col items-center animate-fade-in-up">
+
+            {/* Logo Image with drop shadow */}
+            <img
+              src="/images/logoanimikind.png"
+              alt="AnImiKind Logo"
+              className="h-24 md:h-32 w-auto mb-8 object-contain drop-shadow-lg hover:scale-105 transition-transform duration-500"
+            />
+
+            {/* Badge */}
+            <span className="inline-block py-2 px-6 rounded-full bg-[#eec843]/10 border border-[#eec843]/50 text-[#1e2c29] text-xs md:text-sm font-bold tracking-widest uppercase mb-8 shadow-sm">
+              {t.hero.badge}
+            </span>
+
+            {/* Optimized Headline for Proportion */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1e2c29] tracking-tight leading-[1.15] mb-8 text-balance drop-shadow-sm">
+              <span className="block text-[#1d4c73]">{t.hero.headline[0]}</span>
+              <span className="block text-[#0dc383] my-2 lg:my-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">{t.hero.headline[1]}</span>
+              <span className="block">{t.hero.headline[2]}</span>
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-lg md:text-xl text-[#1d4c73]/80 mb-12 leading-relaxed max-w-3xl mx-auto font-medium text-balance">
+              {t.hero.subheadline}
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-5 justify-center w-full sm:w-auto">
+              {/* Primary Button */}
+              <a href="#ai-section" className="px-8 py-4 rounded-full bg-gradient-to-r from-[#0dc383] to-[#0bb075] text-white font-bold text-lg hover:shadow-xl hover:shadow-[#0dc383]/30 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center">
+                {t.hero.ctaPrimary}
+              </a>
+              {/* Secondary Button */}
+              <button
+                onClick={() => setVideoModalOpen(true)}
+                className="px-8 py-4 rounded-full bg-white text-[#1d4c73] font-bold text-lg border border-[#1d4c73]/10 hover:bg-[#f8fafc] hover:border-[#1d4c73]/30 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 group"
+              >
+                <div className="bg-[#1d4c73]/10 rounded-full p-1 group-hover:bg-[#1d4c73]/20 transition-colors">
+                  <Play className="w-4 h-4 fill-current" />
+                </div>
+                {t.hero.ctaSecondary}
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Modal Overlay */}
+      {videoModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-in fade-in duration-300">
+          <div className="relative w-full max-w-5xl bg-black rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10 transform transition-all scale-100">
+            <button
+              onClick={() => setVideoModalOpen(false)}
+              className="absolute top-4 right-4 text-white/70 hover:text-white z-10 bg-black/50 hover:bg-black/70 p-2 rounded-full backdrop-blur-sm transition-all hover:rotate-90"
+            >
+              <X size={24} />
+            </button>
+            <div className="aspect-video w-full">
+              <video
+                src="/videos/animikind.mov"
+                className="w-full h-full object-contain"
+                controls
+                autoPlay
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Full Width Banner */}
+      <div className="w-full">
+        <img
+          src="/images/animikindbanner.jpeg"
+          alt="AnImiKind Banner"
+          className="w-full h-auto object-cover shadow-md"
+        />
+      </div>
+
+      {/* Pricing Modal Overlay */}
+      {pricingModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1e2c29]/90 backdrop-blur-md p-4 animate-in fade-in duration-300">
+          <div className="relative w-full max-w-3xl bg-white rounded-[2rem] shadow-2xl ring-1 ring-[#1d4c73]/10 transform transition-all scale-100 p-8 md:p-12 max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={() => setPricingModalOpen(false)}
+              className="absolute top-4 right-4 text-[#1d4c73] hover:text-[#0dc383] z-10 bg-[#f1f4f4] hover:bg-[#eec843]/20 p-2 rounded-full transition-all hover:rotate-90"
+            >
+              <X size={24} />
+            </button>
+            <div className="text-center">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#1e2c29] mb-6 leading-tight text-balance">
+                {t.pricingModal.title}
+              </h2>
+              <p className="text-lg text-[#1d4c73] leading-relaxed font-medium text-balance mb-8">
+                {t.pricingModal.description}
+              </p>
+              <div className="space-y-8">
+                <img
+                  src="/images/01pricing.png"
+                  alt="Pricing Plan 1"
+                  className="w-full h-auto rounded-xl shadow-lg"
+                />
+                <img
+                  src="/images/02pricing.png"
+                  alt="Pricing Plan 2"
+                  className="w-full h-auto rounded-xl shadow-lg"
+                />
+                <img
+                  src="/images/03pricing.png"
+                  alt="Pricing Plan 3"
+                  className="w-full h-auto rounded-xl shadow-lg"
+                />
+                <img
+                  src="/images/04pricing.png"
+                  alt="Pricing Plan 4"
+                  className="w-full h-auto rounded-xl shadow-lg"
+                />
+              </div>
+
+              {/* CTA Section */}
+              <div className="mt-12 p-8 rounded-2xl bg-[#1e2c29] text-white text-center shadow-xl">
+                <p className="text-lg md:text-xl font-medium mb-6 leading-relaxed">
+                  {t.pricingModal.ctaText}
+                </p>
+                <a
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-8 py-3 rounded-full bg-[#0dc383] text-white font-bold text-lg hover:bg-[#0bb075] transition-all shadow-lg hover:shadow-[#0dc383]/30 transform hover:-translate-y-0.5 active:scale-95"
+                >
+                  {t.pricingModal.ctaButton}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Value Proposition - Enhanced Cards */}
+      <section className="py-24 bg-white relative">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#1d4c73]/10 to-transparent"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1e2c29] mb-6 tracking-tight">{t.valueProp.title}</h2>
+            <p className="max-w-4xl mx-auto text-[#1d4c73] text-lg md:text-xl leading-relaxed font-medium text-balance">
+              {t.valueProp.intro}
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+            {t.valueProp.items.map((item, idx) => (
+              <div key={idx} className="group p-8 rounded-[2rem] bg-[#f8fafc] border border-[#1d4c73]/5 hover:bg-white hover:border-[#0dc383]/20 hover:shadow-2xl hover:shadow-[#0dc383]/10 hover:-translate-y-2 transition-all duration-300">
+                <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300 bg-white w-20 h-20 rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md">
+                  {IconMap[item.icon]}
+                </div>
+                <h3 className="text-2xl font-bold text-[#1e2c29] mb-4 group-hover:text-[#0dc383] transition-colors">{item.title}</h3>
+                <p className="text-[#1d4c73]/80 leading-relaxed font-medium">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI Section - Visual Polish */}
+      <section id="ai-section" className="py-24 bg-[#1e2c29] text-white overflow-hidden relative">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="animate-fade-in-up">
+              <span className="inline-block py-1 px-3 rounded-lg bg-[#0dc383]/20 text-[#0dc383] font-bold tracking-wider uppercase text-xs mb-4 border border-[#0dc383]/30">
+                {t.aiSection.subtitle}
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-white tracking-tight text-relief">{t.aiSection.title}</h2>
+              <p className="text-[#f1f4f4]/80 text-lg md:text-xl mb-10 leading-relaxed font-light">
+                {t.aiSection.description}
+              </p>
+              <div className="flex flex-col sm:flex-row items-center gap-8">
+                <ul className="space-y-6 flex-1">
+                  {[t.aiSection.feature1, t.aiSection.feature2, t.aiSection.feature3].map((f, i) => (
+                    <li key={i} className="flex items-center gap-4 group">
+                      <div className="bg-[#0dc383]/20 p-2 rounded-xl group-hover:bg-[#0dc383] transition-colors duration-300">
+                        <Activity className="w-6 h-6 text-[#0dc383] group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="font-semibold text-xl text-[#f1f4f4] group-hover:text-white transition-colors">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <img
+                  src="/images/anicuerpo.png"
+                  alt="Ani Character"
+                  className="hidden sm:block h-80 w-auto object-contain drop-shadow-2xl animate-pulse-slow"
+                />
+              </div>
+            </div>
+            <div className="relative animate-fade-in-up delay-200">
+              <div className="absolute -inset-4 bg-gradient-to-r from-[#0dc383] to-[#1d4c73] rounded-[2.5rem] blur-2xl opacity-40 animate-pulse"></div>
+              <img
+                src="/images/screenshot1.png"
+                alt="Emotional AI Analysis Dashboard"
+                className="relative rounded-[2rem] shadow-2xl border border-white/10 w-full object-cover bg-[#1d4c73]/20 hover:scale-[1.02] transition-transform duration-500"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                  const parent = (e.target as HTMLImageElement).parentElement;
+                  if (parent) {
+                    const fallback = document.createElement('div');
+                    fallback.className = "bg-[#1d4c73]/40 backdrop-blur-sm border border-[#1d4c73] p-8 rounded-[2rem] relative h-full flex items-center justify-center text-white font-bold";
+                    fallback.innerText = "Preview Image";
+                    parent.appendChild(fallback);
+                  }
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Ecosystem Breakdown - Clean Design */}
+      <section id="ecosystem" className="py-24 bg-gradient-to-b from-white to-[#f1f4f4] relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-24">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e2c29] mb-6">{t.ecosystem.title}</h2>
+            <p className="text-xl text-[#1d4c73] font-medium max-w-2xl mx-auto">{t.ecosystem.subtitle}</p>
+          </div>
+
+          {/* New Structure Image with glass container */}
+          <div className="mb-24 w-full p-4 md:p-8 bg-white/50 backdrop-blur-sm rounded-[3rem] border border-white shadow-xl">
+            <img
+              src="/images/structureanimikind.png"
+              alt="AnImiKind Ecosystem Structure"
+              className="w-full h-auto rounded-[2rem] shadow-lg"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
+            />
+          </div>
+
+          <div className="space-y-32">
+            {t.ecosystem.products.map((product, idx) => {
+              // Dynamic logo sizing based on user request
+              // Index 0 (App): 3x size
+              // Index 1 (School) & 2 (Academy): 2x size
+              const logoClass = idx === 0
+                ? "h-72 md:h-84 w-auto object-contain mb-8 drop-shadow-sm"
+                : "h-48 md:h-56 w-auto object-contain mb-8 drop-shadow-sm";
+
+              return (
+                <div key={idx} className={`flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 items-center`}>
+                  <div className="flex-1 space-y-8">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#0dc383]/10 text-[#0dc383] rounded-full text-sm font-bold tracking-wide uppercase border border-[#0dc383]/20">
+                      <CheckCircle2 size={16} />
+                      {product.tag}
+                    </div>
+
+                    {product.logo ? (
+                      <img
+                        src={product.logo}
+                        alt={`${product.name} Logo`}
+                        className={logoClass}
+                      />
+                    ) : (
+                      <h3 className="text-4xl font-bold text-[#1e2c29] mb-4">{product.name}</h3>
+                    )}
+
+                    <div className="text-lg text-[#1d4c73] leading-relaxed">
+                      {renderDescription(product.description)}
+                    </div>
+
+                    <ul className="grid sm:grid-cols-1 gap-4 pt-4">
+                      {product.features.map((feat, fIdx) => (
+                        <li key={fIdx} className="flex items-center gap-3 text-[#1e2c29] font-bold text-lg p-3 bg-white rounded-xl shadow-sm border border-[#1d4c73]/5 hover:border-[#0dc383]/50 transition-colors">
+                          <div className="bg-[#0dc383]/10 p-1 rounded-full">
+                            <CheckCircle2 className="w-5 h-5 text-[#0dc383]" />
+                          </div>
+                          {feat}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {/* Increased flex-grow to make images larger */}
+                  <div className="flex-[1.3] w-full space-y-8">
+                    <div className="aspect-video bg-white rounded-[2.5rem] overflow-hidden shadow-2xl relative group border-[8px] border-white ring-1 ring-[#1d4c73]/10">
+                      <img
+                        src={product.image || `https://picsum.photos/seed/${idx + 10}/800/600`}
+                        alt={product.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1e2c29]/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+                    </div>
+
+                    {product.image2 && (
+                      <div className="aspect-video bg-white rounded-[2.5rem] overflow-hidden shadow-2xl relative group border-[8px] border-white ring-1 ring-[#1d4c73]/10">
+                        <img
+                          src={product.image2}
+                          alt={`${product.name} Secondary View`}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#1e2c29]/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+
+
+        </div>
+      </section>
+
+      {/* Impact Stats - Modern Grid */}
+      <section id="impact" className="py-24 bg-[#1d4c73] text-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-3 gap-8">
+            {t.impact.stats.map((stat, idx) => (
+              <div key={idx} className="p-10 rounded-[2rem] bg-white/5 backdrop-blur-sm border border-white/10 text-center hover:bg-white/10 transition-colors group">
+                <div className="text-5xl md:text-6xl font-bold mb-4 tracking-tight group-hover:scale-110 transition-transform duration-300 inline-block text-[#0dc383] text-relief">{stat.value}</div>
+                <div className="text-[#f1f4f4] font-medium text-xl opacity-90">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Booking / Demo Section - Card Lift */}
+      <section id="contact" className="py-24 bg-[#f1f4f4] relative">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-[#1d4c73]/5 hover:shadow-[#1d4c73]/10 transition-shadow duration-500">
+            <div className="p-10 md:p-20 text-center">
+
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1d4c73] mb-10 tracking-tight">
+                {t.demoSection.title}
+              </h2>
+
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-12 py-6 rounded-full bg-gradient-to-r from-[#0dc383] to-[#0bb075] text-white text-xl font-bold hover:shadow-2xl hover:shadow-[#0dc383]/40 transition-all transform hover:-translate-y-1 active:scale-95 mb-12"
+              >
+                {t.demoSection.buttonText}
+              </a>
+
+              <div className="text-left bg-[#f8fafc] p-8 md:p-10 rounded-[2rem] border border-[#1d4c73]/5 shadow-inner">
+                <div className="text-lg md:text-xl text-[#1d4c73] leading-relaxed whitespace-pre-line font-medium">
+                  {t.demoSection.description}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#1e2c29] text-[#f1f4f4]/60 py-16 border-t border-[#1d4c73]/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-1 gap-8 text-center mb-10">
+            {/* Logo and Brand */}
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <div className="w-10 h-10 rounded-xl bg-[#0dc383] flex items-center justify-center shadow-lg shadow-[#0dc383]/20">
+                <HeartHandshake className="text-white w-6 h-6" />
+              </div>
+              <span className="font-bold text-white text-2xl tracking-tight">AnImiKind</span>
+            </div>
+
+            {/* Description */}
+            <p className="max-w-3xl mx-auto text-base md:text-lg leading-relaxed font-medium text-[#f1f4f4]/90">
+              {t.footer.description}
+            </p>
+
+            {/* Contact */}
+            <p className="font-semibold text-[#0dc383] text-base md:text-lg tracking-wide">
+              {t.footer.contact}
+            </p>
+          </div>
+
+          {/* Divider and Bottom Links */}
+          <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
+            <div className="opacity-80">
+              {t.footer.rights}
+            </div>
+            <div className="flex flex-wrap justify-center gap-8 font-semibold uppercase tracking-wider">
+              {t.footer.links.map((link, i) => (
+                <a key={i} href="#" className="hover:text-[#0dc383] transition-colors hover:underline underline-offset-4">{link}</a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <Chatbot lang={lang} content={t.chat} />
+
+    </div>
+  );
+}
+
+export default App;
