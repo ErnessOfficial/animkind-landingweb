@@ -218,7 +218,7 @@ function App() {
             </button>
             <div className="aspect-video w-full">
               <video
-                src="/videos/animikind.mov"
+                src="/videos/animikind.mp4"
                 className="w-full h-full object-contain"
                 controls
                 autoPlay
