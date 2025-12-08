@@ -86,9 +86,9 @@ function App() {
                 AnImi<span className="text-[#0dc383]">Kind</span>
               </span>
             </div>
-            {/* CPD Logo in Header */}
-            <div className="hidden md:block absolute top-14 left-20">
-              <img src="/images/cpd.png" alt="CPD Certified" className="h-12 w-auto object-contain" />
+            {/* CPD Logo in Header - Moved to right and increased size */}
+            <div className="hidden md:block absolute top-16 right-8 z-50">
+              <img src="/images/cpd.png" alt="CPD Certified" className="h-24 w-auto object-contain drop-shadow-md" />
             </div>
 
             {/* Desktop Nav - Optimized Structure */}
