@@ -48,6 +48,7 @@ export interface LanguageContent {
       image?: string;
       image2?: string;
       logo?: string;
+      cpdLogo?: string;
     }[];
   };
   impact: {

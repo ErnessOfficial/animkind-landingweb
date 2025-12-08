@@ -86,6 +86,10 @@ function App() {
                 AnImi<span className="text-[#0dc383]">Kind</span>
               </span>
             </div>
+            {/* CPD Logo in Header */}
+            <div className="hidden md:block absolute top-14 left-20">
+              <img src="/images/cpd.png" alt="CPD Certified" className="h-12 w-auto object-contain" />
+            </div>
 
             {/* Desktop Nav - Optimized Structure */}
             <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
@@ -413,11 +417,22 @@ function App() {
                     </div>
 
                     {product.logo ? (
-                      <img
-                        src={product.logo}
-                        alt={`${product.name} Logo`}
-                        className={logoClass}
-                      />
+                      <div className="flex flex-col items-start gap-4">
+                        <img
+                          src={product.logo}
+                          alt={`${product.name} Logo`}
+                          className={logoClass}
+                        />
+                        {/* @ts-ignore */}
+                        {product.cpdLogo && (
+                          <img
+                            /* @ts-ignore */
+                            src={product.cpdLogo}
+                            alt="CPD Certified"
+                            className="h-16 w-auto object-contain mb-4"
+                          />
+                        )}
+                      </div>
                     ) : (
                       <h3 className="text-4xl font-bold text-[#1e2c29] mb-4">{product.name}</h3>
                     )}

@@ -81,11 +81,12 @@ export const content: Record<'en' | 'es', LanguageContent> = {
         {
           name: "AnImiKind Academy",
           tag: "For Teachers & Staff",
-          description: "Animikdemi by AnimiKind provides a School Emotional Wellbeing Program with Emotional AI-Powered Gamified Learning Simulator Fully aligned with 2026 safeguarding and wellbeing expectations. (Next years updates guaranteed for recertifications) providing Module progression, adaptive missions, badges, points, leaderboards (configurable), and recovery pathways to encourage sustained engagement and reflective practice.",
+          description: "AnimiKdemí by AnimiKind delivers a CPD-Certified School Emotional Wellbeing Programme powered by an Emotional AI Gamified Learning Simulator. Fully aligned with the 2026 safeguarding and wellbeing expectations, the programme offers annual recertification with guaranteed updates to reflect future regulatory changes.\n\nOur structured learning pathways combine emotional intelligence training with immersive, age-appropriate simulations that adapt to each learner. Students and staff progress through modules that unlock sequentially, completing interactive missions guided by Emotional AI designed to strengthen reflective practice and real-world decision-making.\n\nThe platform integrates a comprehensive gamification layer—including badges, points, adaptive missions, configurable leaderboards and personalised recovery pathways—to promote sustained engagement, motivation and meaningful behavioural change.\n\nWith CPD accreditation, unlimited school-wide access and AI-powered experiential learning, AnimiKdemí represents a modern, future-ready approach to safeguarding, emotional literacy and wellbeing education.",
           features: ["“Safe School Stamp” certified by Animikind", "Data-informed, Flexible and scalable", "Intelligent Dual learning routes (Student & Teacher)"],
           image: "/images/screen-animikdemi.png",
           image2: "/images/screen-animikdemi2.png",
-          logo: "/images/animikind-logo.png"
+          logo: "/images/animikind-logo.png",
+          cpdLogo: "/images/cpd.png"
         },
       ],
     },
