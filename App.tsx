@@ -63,9 +63,8 @@ function App() {
   return (
     <div className="min-h-screen bg-[#f1f4f4] text-[#1e2c29] font-sans selection:bg-[#0dc383]/20 selection:text-[#1e2c29] antialiased">
 
-      {/* Navigation - Slanted Design */}
-      <nav className={`fixed w-full z-40 transition-all duration-300 ease-in-out ${scrolled ? 'bg-white/95 backdrop-blur-xl shadow-md py-1' : 'bg-white/90 backdrop-blur-sm py-2 border-b border-transparent'
-        }`}>
+      {/* Navigation - Standard Design */}
+      <nav className="fixed w-full z-40 bg-white/95 backdrop-blur-xl shadow-md py-2 border-b border-gray-100">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Left Side: Logo + CPD */}
@@ -77,12 +76,9 @@ function App() {
                   <img
                     src="/icons/animikind-icon2.png"
                     alt="AnImiKind Logo"
-                    className="w-12 h-12 object-contain relative z-10"
+                    className="w-20 h-20 object-contain relative z-10"
                   />
                 </div>
-                <span className="font-bold text-2xl tracking-tight text-[#1e2c29] hidden sm:block">
-                  Animi<span className="text-white bg-[#0dc383] px-1 rounded-sm ml-0.5">Kind</span>
-                </span>
               </div>
 
               {/* CPD Logo */}
@@ -92,31 +88,28 @@ function App() {
               </div>
             </div>
 
-            {/* Desktop Nav - Slanted Tabs */}
-            <div className="hidden lg:flex items-center">
-              <div className="flex items-center">
+            {/* Desktop Nav - Standard Buttons */}
+            <div className="hidden lg:flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 {[
-                  { name: 'Emotional-AI', href: '#ai-section', bg: 'bg-[#0dc383]', text: 'text-white' },
-                  { name: 'Our Ecosystem', href: '#ecosystem', bg: 'bg-[#0dc383]', text: 'text-white' },
-                  { name: 'Impact & Value', href: '#impact', bg: 'bg-[#0dc383]', text: 'text-white' },
-                  { name: 'Pricing / Plans', href: '#', onClick: () => setPricingModalOpen(true), bg: 'bg-[#0dc383]', text: 'text-white' },
+                  { name: 'Emotional-AI', href: '#ai-section' },
+                  { name: 'Our Ecosystem', href: '#ecosystem' },
+                  { name: 'Impact & Value', href: '#impact' },
+                  { name: 'Pricing / Plans', href: '#', onClick: () => setPricingModalOpen(true) },
                 ].map((item, index) => (
                   <a
                     key={index}
                     href={item.href}
                     onClick={item.onClick}
-                    className={`
-                      relative group h-10 flex items-center justify-center px-6
-                      ${index !== 0 ? '-ml-4' : ''}
-                      transform -skew-x-12
-                      bg-[#0dc383] border-r border-white/20
+                    className="
+                      px-4 py-2 rounded-lg
+                      bg-[#0dc383] text-white
+                      font-bold text-sm whitespace-nowrap tracking-wide
                       hover:bg-[#0bb075] transition-all duration-300
-                      overflow-hidden
-                    `}
+                      shadow-sm hover:shadow-md
+                    "
                   >
-                    <span className="transform skew-x-12 text-white font-bold text-sm whitespace-nowrap tracking-wide">
-                      {item.name}
-                    </span>
+                    {item.name}
                   </a>
                 ))}
               </div>
@@ -137,18 +130,16 @@ function App() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    transform -skew-x-12
                     bg-[#2d3e50] text-white
-                    px-6 py-2.5
-                    font-bold text-sm
+                    px-5 py-2
+                    font-bold text-xs uppercase tracking-wider
+                    rounded-lg
                     hover:bg-[#1e2c29] transition-all
-                    shadow-lg hover:shadow-xl
+                    shadow-md hover:shadow-lg
                     flex items-center justify-center
                   "
                 >
-                  <span className="transform skew-x-12 uppercase tracking-wider">
-                    Book a Free Demo
-                  </span>
+                  Book a Free Demo
                 </a>
               </div>
             </div>
@@ -187,60 +178,54 @@ function App() {
         )}
       </nav>
 
-      {/* Hero Section - Office Environment Design */}
-      <section className="relative w-full h-screen min-h-[800px] flex flex-col">
-        {/* Background Image - Office */}
-        <div className="absolute inset-0 z-0">
+      {/* Hero Section - Split Design */}
+      <section className="relative w-full flex flex-col pt-24">
+        {/* Top Image Section - 50% Height */}
+        <div className="relative w-full h-[50vh] min-h-[400px]">
           <img
             src="/images/animikindbanner.jpeg"
             alt="Office Background"
             className="w-full h-full object-cover"
             onError={(e) => {
-              // Fallback if banner isn't the right one, using a nice office stock photo
               (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80";
             }}
           />
-          {/* Overlay for text readability at the bottom */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/90"></div>
-        </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10"></div>
 
-        {/* Content Container */}
-        <div className="relative z-10 flex-grow flex flex-col justify-end pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-
-          {/* Wall Logo & Robot Overlays */}
+          {/* Wall Logo & Robot Overlays - Positioned within the image area */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {/* Wall Logo - Centered/Top */}
-            <div className="absolute top-[20%] left-1/2 transform -translate-x-1/2 w-[40%] max-w-[500px] opacity-90 drop-shadow-2xl">
+            {/* Wall Logo - Centered */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[30%] max-w-[400px] opacity-90 drop-shadow-2xl">
               <img src="/images/logoanimikind.png" alt="AnimiKind Wall Logo" className="w-full h-auto object-contain" />
             </div>
 
             {/* Robot - Right Side */}
-            <div className="absolute top-[15%] right-[5%] w-[25%] max-w-[350px] animate-pulse-slow drop-shadow-2xl">
+            <div className="absolute bottom-[10%] right-[10%] w-[20%] max-w-[250px] animate-pulse-slow drop-shadow-2xl">
               <img src="/icons/animikind-icon.png" alt="Robot" className="w-full h-auto object-contain" />
-              {/* Note: Using icon as robot head/body if anicuerpo is not the right fit, or swap to anicuerpo.png if it's the full body */}
             </div>
           </div>
+        </div>
 
-
-          {/* Main Text Content */}
-          <div className="animate-fade-in-up space-y-6 mt-auto">
-            <div className="inline-block py-2 px-8 rounded-full bg-[#f1f4f4]/80 backdrop-blur-sm border border-[#1d4c73]/10 text-[#1e2c29] text-xs md:text-sm font-bold tracking-[0.2em] uppercase shadow-sm mb-4">
+        {/* Bottom Text Section - Shaded Background */}
+        <div className="w-full bg-[#f1f4f4] py-16 px-4 sm:px-6 lg:px-8 text-center shadow-inner relative z-10">
+          <div className="max-w-7xl mx-auto animate-fade-in-up space-y-8">
+            <div className="inline-block py-2 px-8 rounded-full bg-white border border-[#1d4c73]/10 text-[#1e2c29] text-xs md:text-sm font-bold tracking-[0.2em] uppercase shadow-sm">
               KIND INTELLIGENCE - TRUSTED TECHNOLOGY
             </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#1d4c73] tracking-tight leading-tight drop-shadow-sm">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1d4c73] tracking-tight leading-tight">
               The “Emotional-AI” Powered Ecosystem
             </h1>
 
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#0dc383] tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0dc383] tracking-tight">
               TO EMPOWER YOUG MINDS <span className="text-[#1e2c29]">& Protect Schools Well-being</span>
             </h2>
 
-            <p className="text-lg md:text-xl text-[#1d4c73]/80 max-w-4xl mx-auto leading-relaxed font-medium mt-8 text-balance">
+            <p className="text-lg md:text-xl text-[#1d4c73]/80 max-w-4xl mx-auto leading-relaxed font-medium text-balance">
               Discover AnImiKind, the pioneering digital ecosystem that harnesses Emotional-AI to enhance emotional literacy, detect risks early, and foster supportive environments for children, teenagers, parents, and school staff. Our interconnected tools empower young people to express themselves safely while providing educators with actionable insights for proactive intervention.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-10">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-8">
               {/* Primary Button */}
               <a href="#ai-section" className="px-8 py-4 rounded-full bg-[#0dc383] text-white font-bold text-lg hover:shadow-xl hover:shadow-[#0dc383]/30 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center min-w-[280px]">
                 Learn More About Our Emotional-AI
