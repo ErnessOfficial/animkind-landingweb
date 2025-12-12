@@ -22,6 +22,7 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [pricingModalOpen, setPricingModalOpen] = useState(false);
+  const [aiModalOpen, setAiModalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const t = content[lang];
@@ -289,6 +290,11 @@ function App() {
                   className="w-full h-auto rounded-xl shadow-lg"
                 />
                 <img
+                  src="/images/01pricing02.png"
+                  alt="Pricing Plan 1 Extended"
+                  className="w-full h-auto rounded-xl shadow-lg"
+                />
+                <img
                   src="/images/02pricing.png"
                   alt="Pricing Plan 2"
                   className="w-full h-auto rounded-xl shadow-lg"
@@ -319,6 +325,32 @@ function App() {
                   {t.pricingModal.ctaButton}
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI Modal Overlay */}
+      {aiModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1e2c29]/90 backdrop-blur-md p-4 animate-in fade-in duration-300">
+          <div className="relative w-full max-w-5xl bg-white rounded-[2rem] shadow-2xl ring-1 ring-[#1d4c73]/10 transform transition-all scale-100 p-8 md:p-12 max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={() => setAiModalOpen(false)}
+              className="absolute top-4 right-4 text-[#1d4c73] hover:text-[#0dc383] z-10 bg-[#f1f4f4] hover:bg-[#eec843]/20 p-2 rounded-full transition-all hover:rotate-90"
+            >
+              <X size={24} />
+            </button>
+            <div className="space-y-8">
+              <img
+                src="/images/iaweb.png"
+                alt="AI Web Interface"
+                className="w-full h-auto rounded-xl shadow-lg"
+              />
+              <img
+                src="/images/globalapp.png"
+                alt="Global App Interface"
+                className="w-full h-auto rounded-xl shadow-lg"
+              />
             </div>
           </div>
         </div>
@@ -381,12 +413,12 @@ function App() {
                 />
               </div>
             </div>
-            <div className="relative animate-fade-in-up delay-200">
+            <div className="relative animate-fade-in-up delay-200 flex flex-col items-center">
               <div className="absolute -inset-4 bg-gradient-to-r from-[#0dc383] to-[#1d4c73] rounded-[2.5rem] blur-2xl opacity-40 animate-pulse"></div>
               <img
-                src="/images/segunda.png"
+                src="/images/emotional-ai-app.png"
                 alt="Emotional AI Analysis Dashboard"
-                className="relative rounded-[2rem] shadow-2xl border border-white/10 w-full object-cover bg-[#1d4c73]/20 hover:scale-[1.02] transition-transform duration-500"
+                className="relative rounded-[2rem] shadow-2xl border border-white/10 w-full object-cover bg-[#1d4c73]/20 hover:scale-[1.02] transition-transform duration-500 mb-8"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = 'none';
                   const parent = (e.target as HTMLImageElement).parentElement;
@@ -398,6 +430,12 @@ function App() {
                   }
                 }}
               />
+              <button
+                onClick={() => setAiModalOpen(true)}
+                className="relative z-10 px-8 py-3 rounded-full bg-[#0dc383] text-white font-bold text-lg hover:bg-[#0bb075] transition-all shadow-lg hover:shadow-[#0dc383]/30 transform hover:-translate-y-0.5 active:scale-95"
+              >
+                Learn More
+              </button>
             </div>
           </div>
         </div>
