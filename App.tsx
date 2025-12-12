@@ -90,6 +90,9 @@ function App() {
 
             {/* Desktop Nav - Standard Buttons */}
             <div className="hidden lg:flex items-center gap-4">
+              {/* Logo in Menu Bar */}
+              <img src="/images/logoanimikind.png" alt="AnimiKind Logo" className="h-10 w-auto object-contain mr-4" />
+
               <div className="flex items-center gap-2">
                 {[
                   { name: 'Emotional-AI', href: '#ai-section' },
@@ -180,8 +183,8 @@ function App() {
 
       {/* Hero Section - Split Design */}
       <section className="relative w-full flex flex-col pt-24">
-        {/* Top Image Section - 50% Height */}
-        <div className="relative w-full h-[50vh] min-h-[400px]">
+        {/* Top Image Section - Reduced Height */}
+        <div className="relative w-full h-[35vh] min-h-[300px]">
           <img
             src="/images/animikindbanner.jpeg"
             alt="Office Background"
@@ -191,23 +194,10 @@ function App() {
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10"></div>
-
-          {/* Wall Logo & Robot Overlays - Positioned within the image area */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {/* Wall Logo - Centered */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[30%] max-w-[400px] opacity-90 drop-shadow-2xl">
-              <img src="/images/logoanimikind.png" alt="AnimiKind Wall Logo" className="w-full h-auto object-contain" />
-            </div>
-
-            {/* Robot - Right Side */}
-            <div className="absolute bottom-[10%] right-[10%] w-[20%] max-w-[250px] animate-pulse-slow drop-shadow-2xl">
-              <img src="/icons/animikind-icon.png" alt="Robot" className="w-full h-auto object-contain" />
-            </div>
-          </div>
         </div>
 
         {/* Bottom Text Section - Shaded Background */}
-        <div className="w-full bg-[#f1f4f4] py-16 px-4 sm:px-6 lg:px-8 text-center shadow-inner relative z-10">
+        <div className="w-full bg-[#f1f4f4] py-8 px-4 sm:px-6 lg:px-8 text-center shadow-inner relative z-10">
           <div className="max-w-7xl mx-auto animate-fade-in-up space-y-8">
             <div className="inline-block py-2 px-8 rounded-full bg-white border border-[#1d4c73]/10 text-[#1e2c29] text-xs md:text-sm font-bold tracking-[0.2em] uppercase shadow-sm">
               KIND INTELLIGENCE - TRUSTED TECHNOLOGY
@@ -394,7 +384,7 @@ function App() {
             <div className="relative animate-fade-in-up delay-200">
               <div className="absolute -inset-4 bg-gradient-to-r from-[#0dc383] to-[#1d4c73] rounded-[2.5rem] blur-2xl opacity-40 animate-pulse"></div>
               <img
-                src="/images/screenshot1.png"
+                src="/images/segunda.png"
                 alt="Emotional AI Analysis Dashboard"
                 className="relative rounded-[2rem] shadow-2xl border border-white/10 w-full object-cover bg-[#1d4c73]/20 hover:scale-[1.02] transition-transform duration-500"
                 onError={(e) => {
