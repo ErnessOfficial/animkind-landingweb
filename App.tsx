@@ -260,7 +260,7 @@ function App() {
       {/* Full Width Banner */}
       <div className="w-full">
         <img
-          src="/images/animikindbanner.jpeg"
+          src="/images/segunda.png"
           alt="AnImiKind Banner"
           className="w-full h-auto object-cover shadow-md"
         />
@@ -546,15 +546,31 @@ function App() {
         </div>
       </section>
 
-      {/* Impact Stats - Modern Grid */}
+      {/* Impact Stats - Modern Grid with New Structure */}
       <section id="impact" className="py-24 bg-[#1d4c73] text-white relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Section Title */}
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-16 text-center tracking-tight">{t.impact.title}</h2>
+
+          {/* Stats Grid */}
           <div className="grid md:grid-cols-3 gap-8">
             {t.impact.stats.map((stat, idx) => (
-              <div key={idx} className="p-10 rounded-[2rem] bg-white/5 backdrop-blur-sm border border-white/10 text-center hover:bg-white/10 transition-colors group">
-                <div className="text-5xl md:text-6xl font-bold mb-4 tracking-tight group-hover:scale-110 transition-transform duration-300 inline-block text-[#0dc383] text-relief">{stat.value}</div>
-                <div className="text-[#f1f4f4] font-medium text-xl opacity-90">{stat.label}</div>
+              <div key={idx} className="p-8 md:p-10 rounded-[2rem] bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all group">
+                {/* Title - Small Green */}
+                <h3 className="text-sm md:text-base font-bold mb-4 text-[#0dc383] tracking-wider uppercase">
+                  {stat.title}
+                </h3>
+
+                {/* Subtitle - White Bold */}
+                <h4 className="text-xl md:text-2xl font-bold mb-6 text-white leading-tight">
+                  {stat.subtitle}
+                </h4>
+
+                {/* Text - Light Color, Normal Size */}
+                <p className="text-[#f1f4f4]/90 text-base md:text-lg leading-relaxed font-normal">
+                  {stat.text}
+                </p>
               </div>
             ))}
           </div>
@@ -581,7 +597,7 @@ function App() {
               </a>
 
               <div className="text-left bg-[#f8fafc] p-8 md:p-10 rounded-[2rem] border border-[#1d4c73]/5 shadow-inner">
-                <div className="text-lg md:text-xl text-[#1d4c73] leading-relaxed whitespace-pre-line font-medium">
+                <div className="text-sm md:text-base text-[#1d4c73] leading-relaxed whitespace-pre-line font-medium">
                   {t.demoSection.description}
                 </div>
               </div>
@@ -598,7 +614,7 @@ function App() {
             {/* Logo and Brand */}
             <div className="flex items-center justify-center gap-3 mb-2">
               <div className="w-10 h-10 rounded-xl bg-[#0dc383] flex items-center justify-center shadow-lg shadow-[#0dc383]/20">
-                <HeartHandshake className="text-white w-6 h-6" />
+                <img src="/icons/animikind-icon.png" alt="AnImiKind Icon" className="w-6 h-6 object-contain" />
               </div>
               <span className="font-bold text-white text-2xl tracking-tight">AnImiKind</span>
             </div>

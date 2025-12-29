@@ -91,11 +91,23 @@ export const content: Record<'en' | 'es', LanguageContent> = {
       ],
     },
     impact: {
-      title: "Real Impact on School Life",
+      title: "Impact & Value",
       stats: [
-        { value: "Earlier", label: "Intervention in bullying cases" },
-        { value: "100%", label: "GDPR & Privacy Compliant" },
-        { value: "24/7", label: "Support access for students" },
+        {
+          title: "OPERATIONAL EFFICIENCY",
+          subtitle: "Reclaiming 40% of Staff Capacity",
+          text: "We convert expensive administrative hours into high-value student support. Safeguarding Leads (DSLs) currently lose up to 10 hours per week on reactive crisis management and incident reporting. Animikind's 'Kind Intelligence' automates the detection and logging of emotional risks, reducing this administrative burden by 30–40%. By shifting from reactive paperwork to proactive intervention, your school recovers hundreds of hours of staff time annually, significantly lowering the hidden operational costs of wellbeing management."
+        },
+        {
+          title: "FINANCIAL SUSTAINABILITY",
+          subtitle: "The ROI of Retention",
+          text: "Protecting your roll count is protecting your revenue. With 1 in 4 UK children reporting bullying, the correlation between hidden emotional distress and 'Persistent Absence' is the single biggest threat to student retention. Our ecosystem acts as an insurance policy against withdrawal. Commercially, retaining just one student who would otherwise leave due to unresolved anxiety covers the cost of the entire Animikind annual licence for your institution. We turn a cost centre into a retention asset."
+        },
+        {
+          title: "REGULATORY EXCELLENCE",
+          subtitle: "100% Alignment for 2026",
+          text: "Future-proofing your Ofsted compliance before the rules change. As regulations tighten towards a holistic 'Whole School Approach', Animikind ensures your institution achieves 100% alignment with the anticipated Keeping Children Safe in Education (KCSIE) 2026 standards. While traditional methods miss the silent majority, our AI bridges the gap, connecting the 80% of students who never verbally report distress. We provide the quantifiable data and digital evidence trails that inspectors require to rate a school's personal development provision as 'Outstanding'."
+        },
       ],
     },
     demoSection: {
@@ -105,7 +117,7 @@ export const content: Record<'en' | 'es', LanguageContent> = {
     },
     footer: {
       description: "AnImiKind – The Ecosystem with a Kind Intelligence and a Trusted Technology. Children and Adolescents Emotional Wellbeing, Bullying and cyberbullying in schools environments.",
-      contact: "Contact: info@animikind.com | +44 (0)20 1234 5678",
+      contact: "Contact: info@animikind.com",
       rights: "© 2025 AnImiKind. All rights reserved.",
       links: ["Privacy Policy", "Terms of Service"],
     },
@@ -205,11 +217,23 @@ export const content: Record<'en' | 'es', LanguageContent> = {
       ],
     },
     impact: {
-      title: "Impacto Real en la Vida Escolar",
+      title: "Impacto y Valor",
       stats: [
-        { value: "Temprana", label: "Intervención en casos de acoso" },
-        { value: "100%", label: "Cumplimiento GDPR y Privacidad" },
-        { value: "24/7", label: "Acceso a soporte para estudiantes" },
+        {
+          title: "EFICIENCIA OPERACIONAL",
+          subtitle: "Recuperando el 40% de la Capacidad del Personal",
+          text: "Convertimos costosas horas administrativas en apoyo estudiantil de alto valor. Los Líderes de Protección (DSLs) actualmente pierden hasta 10 horas por semana en manejo de crisis reactivo y reportes de incidentes. La 'Inteligencia Amable' de Animikind automatiza la detección y registro de riesgos emocionales, reduciendo esta carga administrativa en un 30–40%. Al pasar del papeleo reactivo a la intervención proactiva, su escuela recupera cientos de horas de tiempo del personal anualmente, reduciendo significativamente los costos operativos ocultos de la gestión del bienestar."
+        },
+        {
+          title: "SOSTENIBILIDAD FINANCIERA",
+          subtitle: "El ROI de la Retención",
+          text: "Proteger su matrícula es proteger sus ingresos. Con 1 de cada 4 niños en el Reino Unido reportando acoso, la correlación entre angustia emocional oculta y 'Ausencia Persistente' es la mayor amenaza para la retención estudiantil. Nuestro ecosistema actúa como una póliza de seguro contra la deserción. Comercialmente, retener solo un estudiante que de otro modo se iría debido a ansiedad no resuelta cubre el costo de toda la licencia anual de Animikind para su institución. Convertimos un centro de costos en un activo de retención."
+        },
+        {
+          title: "EXCELENCIA REGULATORIA",
+          subtitle: "100% de Alineación para 2026",
+          text: "Preparando su cumplimiento con Ofsted antes de que cambien las reglas. A medida que las regulaciones se endurecen hacia un 'Enfoque Integral de Toda la Escuela', Animikind asegura que su institución logre un 100% de alineación con los estándares anticipados de Keeping Children Safe in Education (KCSIE) 2026. Mientras que los métodos tradicionales pierden a la mayoría silenciosa, nuestra IA cierra la brecha, conectando al 80% de los estudiantes que nunca reportan verbalmente su angustia. Proporcionamos los datos cuantificables y las pistas de evidencia digital que los inspectores requieren para calificar la provisión de desarrollo personal de una escuela como 'Sobresaliente'."
+        },
       ],
     },
     demoSection: {
@@ -219,7 +243,7 @@ export const content: Record<'en' | 'es', LanguageContent> = {
     },
     footer: {
       description: "AnImiKind – El Ecosistema con una Inteligencia Amable y una Tecnología de Confianza. Bienestar Emocional de Niños y Adolescentes, Acoso y ciberacoso en entornos escolares.",
-      contact: "Contacto: info@animikind.com | +44 (0)20 1234 5678",
+      contact: "Contacto: info@animikind.com",
       rights: "© 2025 AnImiKind. Todos los derechos reservados.",
       links: ["Política de Privacidad", "Términos de Servicio"],
     },

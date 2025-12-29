@@ -54,8 +54,9 @@ export interface LanguageContent {
   impact: {
     title: string;
     stats: {
-      value: string;
-      label: string;
+      title: string;
+      subtitle: string;
+      text: string;
     }[];
   };
   demoSection: {
