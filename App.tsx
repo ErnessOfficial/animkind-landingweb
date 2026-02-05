@@ -441,108 +441,302 @@ function App() {
         </div>
       </section>
 
-      {/* Ecosystem Breakdown - Clean Design */}
-      <section id="ecosystem" className="py-24 bg-gradient-to-b from-white to-[#f1f4f4] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-24">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e2c29] mb-6">{t.ecosystem.title}</h2>
-            <p className="text-xl text-[#1d4c73] font-medium max-w-2xl mx-auto">{t.ecosystem.subtitle}</p>
+      {/* Ecosystem Breakdown - Modern Premium Design */}
+      <section id="ecosystem" className="py-32 bg-gradient-to-b from-white via-[#f8fafc] to-[#f1f4f4] relative overflow-hidden">
+        {/* Background Decorative Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#0dc383]/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#1d4c73]/5 rounded-full blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-20 animate-fade-in-up">
+            <div className="inline-block py-2 px-6 rounded-full bg-[#0dc383]/10 border border-[#0dc383]/20 text-[#0dc383] text-sm font-bold tracking-wider uppercase mb-6">
+              Complete Ecosystem
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1e2c29] mb-6 tracking-tight">
+              {t.ecosystem.title}
+            </h2>
+            <p className="text-xl md:text-2xl text-[#1d4c73]/80 font-medium max-w-3xl mx-auto leading-relaxed">
+              {t.ecosystem.subtitle}
+            </p>
           </div>
 
-          {/* New Structure Image with glass container */}
-          <div className="mb-24 w-full p-4 md:p-8 bg-white/50 backdrop-blur-sm rounded-[3rem] border border-white shadow-xl">
+          {/* Ecosystem Structure Image */}
+          <div className="mb-32 w-full p-6 md:p-10 bg-white/60 backdrop-blur-md rounded-[3rem] border-2 border-white shadow-2xl hover:shadow-[#0dc383]/10 transition-shadow duration-500">
             <img
               src="/images/structureanimikind.png"
               alt="AnImiKind Ecosystem Structure"
-              className="w-full h-auto rounded-[2rem] shadow-lg"
+              className="w-full h-auto rounded-[2rem] shadow-xl"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
               }}
             />
           </div>
 
-          <div className="space-y-32">
+          {/* Products Section */}
+          <div className="space-y-40">
             {t.ecosystem.products.map((product, idx) => {
-              // Dynamic logo sizing based on user request
-              // Index 0 (App): 3x size
-              // Index 1 (School) & 2 (Academy): 2x size
-              const logoClass = idx === 0
-                ? "h-72 md:h-84 w-auto object-contain mb-8 drop-shadow-sm"
-                : "h-48 md:h-56 w-auto object-contain mb-8 drop-shadow-sm";
+              const isReversed = idx % 2 === 1;
 
               return (
-                <div key={idx} className={`flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 items-center`}>
-                  <div className="flex-1 space-y-8">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#0dc383]/10 text-[#0dc383] rounded-full text-sm font-bold tracking-wide uppercase border border-[#0dc383]/20">
-                      <CheckCircle2 size={16} />
-                      {product.tag}
-                    </div>
+                <div key={idx} className="relative">
+                  {/* Product Card Container */}
+                  <div className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-16 items-stretch`}>
 
-                    {product.logo ? (
-                      <div className="flex flex-col items-start gap-4">
-                        <img
-                          src={product.logo}
-                          alt={`${product.name} Logo`}
-                          className={logoClass}
-                        />
-                        {/* @ts-ignore */}
-                        {product.cpdLogo && (
+                    {/* Content Side */}
+                    <div className="flex-1 flex flex-col justify-center space-y-8 animate-fade-in-up">
+                      {/* Tag Badge */}
+                      <div className="inline-flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-[#0dc383]/10 to-[#0dc383]/5 text-[#0dc383] rounded-full text-sm font-bold tracking-wide uppercase border border-[#0dc383]/20 shadow-sm w-fit">
+                        <div className="w-2 h-2 bg-[#0dc383] rounded-full animate-pulse"></div>
+                        {product.tag}
+                      </div>
+
+                      {/* Logo */}
+                      {product.logo && (
+                        <div className="flex flex-col items-start gap-6">
                           <img
-                            /* @ts-ignore */
-                            src={product.cpdLogo}
-                            alt="CPD Certified"
-                            className="h-16 w-auto object-contain mb-4"
+                            src={product.logo}
+                            alt={`${product.name} Logo`}
+                            className={`${idx === 0 ? 'h-52 md:h-64' : 'h-40 md:h-48'} w-auto object-contain drop-shadow-lg hover:drop-shadow-2xl transition-all duration-300`}
                           />
-                        )}
-                      </div>
-                    ) : (
-                      <h3 className="text-4xl font-bold text-[#1e2c29] mb-4">{product.name}</h3>
-                    )}
+                          {/* @ts-ignore */}
+                          {product.cpdLogo && (
+                            <img
+                              /* @ts-ignore */
+                              src={product.cpdLogo}
+                              alt="CPD Certified"
+                              className="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                            />
+                          )}
+                        </div>
+                      )}
 
-                    <div className="text-lg text-[#1d4c73] leading-relaxed">
-                      {renderDescription(product.description)}
+                      {/* Tagline */}
+                      {/* @ts-ignore */}
+                      {product.tagline && (
+                        <div className="relative">
+                          <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-[#0dc383] to-transparent rounded-full"></div>
+                          {/* @ts-ignore */}
+                          <p className="text-xl md:text-2xl font-bold text-[#1d4c73] leading-tight italic pl-4">
+                            {/* @ts-ignore */}
+                            "{product.tagline}"
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Description */}
+                      <div className="text-base md:text-lg text-[#1d4c73]/90 leading-relaxed space-y-4">
+                        {renderDescription(product.description)}
+                      </div>
+
+                      {/* Features Grid - Default Layout for App & AnimiKdemi */}
+                      {idx !== 1 && (
+                        <div className="grid gap-3 pt-6">
+                          {product.features.map((feat, fIdx) => (
+                            <div
+                              key={fIdx}
+                              className="group flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm border border-[#1d4c73]/5 hover:border-[#0dc383]/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                            >
+                              <div className="flex-shrink-0 mt-1">
+                                <div className="bg-gradient-to-br from-[#0dc383]/20 to-[#0dc383]/10 p-2 rounded-xl group-hover:from-[#0dc383] group-hover:to-[#0bb075] transition-all duration-300">
+                                  <CheckCircle2 className="w-5 h-5 text-[#0dc383] group-hover:text-white transition-colors" />
+                                </div>
+                              </div>
+                              <span className="font-semibold text-[#1e2c29] text-base leading-snug">
+                                {feat}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* School Panel (idx === 1) - First Column Features (Right Side) */}
+                      {idx === 1 && (
+                        <div className="grid gap-3 pt-6">
+                          {product.features.slice(0, 4).map((feat, fIdx) => (
+                            <div
+                              key={fIdx}
+                              className="group flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm border border-[#1d4c73]/5 hover:border-[#0dc383]/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                            >
+                              <div className="flex-shrink-0 mt-1">
+                                <div className="bg-gradient-to-br from-[#0dc383]/20 to-[#0dc383]/10 p-2 rounded-xl group-hover:from-[#0dc383] group-hover:to-[#0bb075] transition-all duration-300">
+                                  <CheckCircle2 className="w-5 h-5 text-[#0dc383] group-hover:text-white transition-colors" />
+                                </div>
+                              </div>
+                              <span className="font-semibold text-[#1e2c29] text-base leading-snug">
+                                {feat}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
 
-                    <ul className="grid sm:grid-cols-1 gap-4 pt-4">
-                      {product.features.map((feat, fIdx) => (
-                        <li key={fIdx} className="flex items-center gap-3 text-[#1e2c29] font-bold text-lg p-3 bg-white rounded-xl shadow-sm border border-[#1d4c73]/5 hover:border-[#0dc383]/50 transition-colors">
-                          <div className="bg-[#0dc383]/10 p-1 rounded-full">
-                            <CheckCircle2 className="w-5 h-5 text-[#0dc383]" />
+                    {/* Images Side */}
+                    <div className="flex-1 flex flex-col gap-6 animate-fade-in-up delay-200">
+                      {/* AnimiKind App (idx === 0) - 3 Images Vertically */}
+                      {idx === 0 && (
+                        <React.Fragment>
+                          {/* Main Image */}
+                          <div className="relative group overflow-hidden rounded-[2.5rem] shadow-2xl border-4 border-white ring-1 ring-[#1d4c73]/10 hover:ring-[#0dc383]/30 transition-all duration-500">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#0dc383]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                            <img
+                              src={product.image || `https://picsum.photos/seed/${idx + 10}/800/600`}
+                              alt={product.name}
+                              className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                            />
+                            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#1e2c29]/60 to-transparent opacity-80 group-hover:opacity-50 transition-opacity"></div>
                           </div>
-                          {feat}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  {/* Increased flex-grow to make images larger */}
-                  <div className="flex-[1.3] w-full space-y-8">
-                    <div className="aspect-video bg-white rounded-[2.5rem] overflow-hidden shadow-2xl relative group border-[8px] border-white ring-1 ring-[#1d4c73]/10">
-                      <img
-                        src={product.image || `https://picsum.photos/seed/${idx + 10}/800/600`}
-                        alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1e2c29]/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                    </div>
 
-                    {product.image2 && (
-                      <div className="aspect-video bg-white rounded-[2.5rem] overflow-hidden shadow-2xl relative group border-[8px] border-white ring-1 ring-[#1d4c73]/10">
-                        <img
-                          src={product.image2}
-                          alt={`${product.name} Secondary View`}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#1e2c29]/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                      </div>
-                    )}
+                          {/* Second Image */}
+                          {product.image2 && (
+                            <div className="relative group overflow-hidden rounded-[2.5rem] shadow-xl border-4 border-white ring-1 ring-[#1d4c73]/10 hover:ring-[#0dc383]/30 transition-all duration-500">
+                              <div className="absolute inset-0 bg-gradient-to-br from-[#1d4c73]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                              <img
+                                src={product.image2}
+                                alt={`${product.name} Secondary View`}
+                                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                              />
+                              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#1e2c29]/60 to-transparent opacity-80 group-hover:opacity-50 transition-opacity"></div>
+                            </div>
+                          )}
+
+                          {/* Third Image */}
+                          {/* @ts-ignore */}
+                          {product.image3 && (
+                            <div className="relative group overflow-hidden rounded-[2.5rem] shadow-xl border-4 border-white ring-1 ring-[#1d4c73]/10 hover:ring-[#0dc383]/30 transition-all duration-500">
+                              <div className="absolute inset-0 bg-gradient-to-br from-[#0dc383]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                              {/* @ts-ignore */}
+                              <img
+                                src={product.image3}
+                                alt={`${product.name} Third View`}
+                                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                              />
+                              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#1e2c29]/60 to-transparent opacity-80 group-hover:opacity-50 transition-opacity"></div>
+                            </div>
+                          )}
+                        </React.Fragment>
+                      )}
+
+                      {/* School Panel (idx === 1) - 2 Images + Second Features Column */}
+                      {idx === 1 && (
+                        <React.Fragment>
+                          {/* Main Image */}
+                          <div className="relative group overflow-hidden rounded-[2.5rem] shadow-2xl border-4 border-white ring-1 ring-[#1d4c73]/10 hover:ring-[#0dc383]/30 transition-all duration-500">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#0dc383]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                            <img
+                              src={product.image || `https://picsum.photos/seed/${idx + 10}/800/600`}
+                              alt={product.name}
+                              className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                            />
+                            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#1e2c29]/60 to-transparent opacity-80 group-hover:opacity-50 transition-opacity"></div>
+                          </div>
+
+                          {/* Second Image */}
+                          {product.image2 && (
+                            <div className="relative group overflow-hidden rounded-[2.5rem] shadow-xl border-4 border-white ring-1 ring-[#1d4c73]/10 hover:ring-[#0dc383]/30 transition-all duration-500">
+                              <div className="absolute inset-0 bg-gradient-to-br from-[#1d4c73]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                              <img
+                                src={product.image2}
+                                alt={`${product.name} Secondary View`}
+                                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                              />
+                              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#1e2c29]/60 to-transparent opacity-80 group-hover:opacity-50 transition-opacity"></div>
+                            </div>
+                          )}
+
+                          {/* Second Column Features (from "Privacy & Security..." onwards) */}
+                          <div className="grid gap-3">
+                            {product.features.slice(4).map((feat, fIdx) => (
+                              <div
+                                key={fIdx + 4}
+                                className="group flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm border border-[#1d4c73]/5 hover:border-[#0dc383]/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                              >
+                                <div className="flex-shrink-0 mt-1">
+                                  <div className="bg-gradient-to-br from-[#0dc383]/20 to-[#0dc383]/10 p-2 rounded-xl group-hover:from-[#0dc383] group-hover:to-[#0bb075] transition-all duration-300">
+                                    <CheckCircle2 className="w-5 h-5 text-[#0dc383] group-hover:text-white transition-colors" />
+                                  </div>
+                                </div>
+                                <span className="font-semibold text-[#1e2c29] text-base leading-snug">
+                                  {feat}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </React.Fragment>
+                      )}
+
+                      {/* AnimiKdemi (idx === 2) - 4 Images: 2 Vertical + 2 Horizontal */}
+                      {idx === 2 && (
+                        <React.Fragment>
+                          {/* First Two Images Vertically */}
+                          <div className="relative group overflow-hidden rounded-[2.5rem] shadow-2xl border-4 border-white ring-1 ring-[#1d4c73]/10 hover:ring-[#0dc383]/30 transition-all duration-500">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#0dc383]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                            <img
+                              src={product.image || `https://picsum.photos/seed/${idx + 10}/800/600`}
+                              alt={product.name}
+                              className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                            />
+                            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#1e2c29]/60 to-transparent opacity-80 group-hover:opacity-50 transition-opacity"></div>
+                          </div>
+
+                          {product.image2 && (
+                            <div className="relative group overflow-hidden rounded-[2.5rem] shadow-xl border-4 border-white ring-1 ring-[#1d4c73]/10 hover:ring-[#0dc383]/30 transition-all duration-500">
+                              <div className="absolute inset-0 bg-gradient-to-br from-[#1d4c73]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                              <img
+                                src={product.image2}
+                                alt={`${product.name} Secondary View`}
+                                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                              />
+                              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#1e2c29]/60 to-transparent opacity-80 group-hover:opacity-50 transition-opacity"></div>
+                            </div>
+                          )}
+
+                          {/* Third and Fourth Images Side by Side */}
+                          <div className="grid grid-cols-2 gap-4">
+                            {/* @ts-ignore */}
+                            {product.image3 && (
+                              <div className="relative group overflow-hidden rounded-[2rem] shadow-lg border-4 border-white ring-1 ring-[#1d4c73]/10 hover:ring-[#0dc383]/30 transition-all duration-500">
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#0dc383]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                                {/* @ts-ignore */}
+                                <img
+                                  src={product.image3}
+                                  alt={`${product.name} Third View`}
+                                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                                />
+                                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#1e2c29]/60 to-transparent opacity-80 group-hover:opacity-50 transition-opacity"></div>
+                              </div>
+                            )}
+
+                            {/* @ts-ignore */}
+                            {product.image4 && (
+                              <div className="relative group overflow-hidden rounded-[2rem] shadow-lg border-4 border-white ring-1 ring-[#1d4c73]/10 hover:ring-[#0dc383]/30 transition-all duration-500">
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#1d4c73]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                                {/* @ts-ignore */}
+                                <img
+                                  src={product.image4}
+                                  alt={`${product.name} Fourth View`}
+                                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                                />
+                                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#1e2c29]/60 to-transparent opacity-80 group-hover:opacity-50 transition-opacity"></div>
+                              </div>
+                            )}
+                          </div>
+                        </React.Fragment>
+                      )}
+                    </div>
                   </div>
+
+                  {/* Separator Line (except for last item) */}
+                  {idx < t.ecosystem.products.length - 1 && (
+                    <div className="mt-32 flex items-center justify-center">
+                      <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-[#1d4c73]/20 to-transparent"></div>
+                    </div>
+                  )}
                 </div>
               );
             })}
           </div>
-
-
-
         </div>
       </section>
 

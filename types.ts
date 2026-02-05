@@ -43,10 +43,13 @@ export interface LanguageContent {
     products: {
       name: string;
       tag: string;
+      tagline?: string;
       description: string;
       features: string[];
       image?: string;
       image2?: string;
+      image3?: string;
+      image4?: string;
       logo?: string;
       cpdLogo?: string;
     }[];
