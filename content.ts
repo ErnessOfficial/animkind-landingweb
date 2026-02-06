@@ -153,6 +153,7 @@ export const content: Record<'en' | 'es', LanguageContent> = {
       contact: "Contact: info@animikind.com",
       rights: "© 2025 AnImiKind. All rights reserved.",
       links: ["Privacy Policy", "Terms of Service"],
+      gepLink: "Gender Equality Plan (GEP)",
     },
     chat: {
       trigger: "Chat with Ani",
@@ -313,6 +314,7 @@ export const content: Record<'en' | 'es', LanguageContent> = {
       contact: "Contacto: info@animikind.com",
       rights: "© 2025 AnImiKind. Todos los derechos reservados.",
       links: ["Política de Privacidad", "Términos de Servicio"],
+      gepLink: "Plan de Igualdad de Género",
     },
     chat: {
       trigger: "Habla con Ani",

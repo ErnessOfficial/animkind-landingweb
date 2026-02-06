@@ -72,6 +72,7 @@ export interface LanguageContent {
     contact: string;
     rights: string;
     links: string[];
+    gepLink: string;
   };
   chat: {
     trigger: string;

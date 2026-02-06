@@ -833,6 +833,14 @@ function App() {
               {t.footer.links.map((link, i) => (
                 <a key={i} href="#" className="hover:text-[#0dc383] transition-colors hover:underline underline-offset-4">{link}</a>
               ))}
+              <a
+                href="/Legal/GENDER EQUALITY PLAN (GEP) – ANIMIKIND LIMITED (2026-2028)_signed_signed.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#0dc383] transition-colors hover:underline underline-offset-4"
+              >
+                {t.footer.gepLink}
+              </a>
             </div>
           </div>
         </div>
