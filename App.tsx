@@ -843,6 +843,8 @@ function App() {
               </a>
             </div>
           </div>
+          {/* Metricool Tracking Pixel */}
+          <img src="https://tracker.metricool.com/c3po.jpg?hash=cb0ea0169a9f8b0126a612c8625b2348" alt="" className="hidden" />
         </div>
       </footer>
 
