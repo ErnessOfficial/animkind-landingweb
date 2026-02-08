@@ -160,6 +160,16 @@ export const content: Record<'en' | 'es', LanguageContent> = {
       placeholder: "Ask Ani about emotional wellbeing...",
       intro: "Hi! I'm Ani, the AnImiKind AI assistant. I can explain how our ecosystem works or offer general wellbeing info. How can I help?",
       error: "Sorry, I'm having trouble connecting right now."
+    },
+    surveyContest: {
+      buttonText: "Win a Programme for Your School",
+      modalTitle: "🎓 Win a CPD Training Programme for Your School!",
+      modalIntro: "We invite you to participate in our brief survey to help drive the optimisation of emotional wellbeing and safeguarding systems in UK schools.",
+      modalDescription: "Complete our short survey and automatically enter the prize draw for a complete CPD-certified training package for your entire teaching staff on bullying and cyberbullying impact and management—aligned with the new UK regulations coming into effect in 2026 for primary and secondary schools.",
+      prizeTitle: "What You Could Win",
+      prizeDescription: "Full staff access to our updated CPD Certification Programme on Bullying & Cyberbullying Impact and Management for Primary and Secondary Schools",
+      deadline: "Complete the survey before 31st May 2026 to be entered into the draw",
+      ctaButton: "Start Survey"
     }
   },
   es: {
@@ -321,6 +331,16 @@ export const content: Record<'en' | 'es', LanguageContent> = {
       placeholder: "Pregunta a Ani sobre bienestar emocional...",
       intro: "¡Hola! Soy Ani, el asistente IA de AnImiKind. Puedo explicarte nuestro ecosistema u ofrecer información general de bienestar. ¿En qué te ayudo?",
       error: "Lo siento, tengo problemas de conexión en este momento."
+    },
+    surveyContest: {
+      buttonText: "Gana un Programa para tu Escuela",
+      modalTitle: "🎓 Win a CPD Training Programme for Your School!",
+      modalIntro: "We invite you to participate in our brief survey to help drive the optimisation of emotional wellbeing and safeguarding systems in UK schools.",
+      modalDescription: "Complete our short survey and automatically enter the prize draw for a complete CPD-certified training package for your entire teaching staff on bullying and cyberbullying impact and management—aligned with the new UK regulations coming into effect in 2026 for primary and secondary schools.",
+      prizeTitle: "What You Could Win",
+      prizeDescription: "Full staff access to our updated CPD Certification Programme on Bullying & Cyberbullying Impact and Management for Primary and Secondary Schools",
+      deadline: "Complete the survey before 31st May 2026 to be entered into the draw",
+      ctaButton: "Start Survey"
     }
   },
 };

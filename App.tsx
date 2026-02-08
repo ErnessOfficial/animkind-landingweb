@@ -11,7 +11,8 @@ import {
   Activity,
   Lock,
   HeartHandshake,
-  Play
+  Play,
+  Gift
 } from 'lucide-react';
 import { content } from './content';
 import { Language } from './types';
@@ -23,6 +24,7 @@ function App() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [pricingModalOpen, setPricingModalOpen] = useState(false);
   const [aiModalOpen, setAiModalOpen] = useState(false);
+  const [surveyModalOpen, setSurveyModalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const t = content[lang];
@@ -36,6 +38,19 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Load Typeform embed script when survey modal opens
+  useEffect(() => {
+    if (surveyModalOpen) {
+      const existingScript = document.querySelector('script[src*="embed.typeform.com"]');
+      if (!existingScript) {
+        const script = document.createElement('script');
+        script.src = '//embed.typeform.com/next/embed.js';
+        script.async = true;
+        document.body.appendChild(script);
+      }
+    }
+  }, [surveyModalOpen]);
 
   const toggleLang = () => {
     setLang(prev => prev === 'en' ? 'es' : 'en');
@@ -230,6 +245,15 @@ function App() {
                 <Play className="w-5 h-5 fill-[#1d4c73] text-[#1d4c73]" />
                 Watch a Video
               </button>
+
+              {/* Survey Contest Button */}
+              <button
+                onClick={() => setSurveyModalOpen(true)}
+                className="px-8 py-4 rounded-full bg-gradient-to-r from-[#eec843] to-[#f5d76e] text-[#1e2c29] font-bold text-lg border border-[#eec843]/30 hover:from-[#f5d76e] hover:to-[#eec843] transition-all shadow-lg hover:shadow-xl hover:shadow-[#eec843]/30 transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3 min-w-[280px] group animate-pulse-slow"
+              >
+                <Gift className="w-5 h-5 text-[#1e2c29] group-hover:scale-110 transition-transform" />
+                {t.surveyContest.buttonText}
+              </button>
             </div>
           </div>
         </div>
@@ -351,6 +375,76 @@ function App() {
                 alt="Global App Interface"
                 className="w-full h-auto rounded-xl shadow-lg"
               />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Survey Contest Modal Overlay */}
+      {surveyModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1e2c29]/90 backdrop-blur-md p-4 animate-in fade-in duration-300">
+          <div className="relative w-full max-w-4xl bg-white rounded-[2rem] shadow-2xl ring-1 ring-[#eec843]/30 transform transition-all scale-100 max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={() => setSurveyModalOpen(false)}
+              className="absolute top-4 right-4 text-[#1d4c73] hover:text-[#eec843] z-10 bg-[#f1f4f4] hover:bg-[#eec843]/20 p-2 rounded-full transition-all hover:rotate-90"
+            >
+              <X size={24} />
+            </button>
+
+            {/* Header with Golden Gradient */}
+            <div className="bg-gradient-to-r from-[#eec843] via-[#f5d76e] to-[#eec843] p-8 md:p-12 text-center rounded-t-[2rem]">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-lg mb-6 animate-bounce">
+                <Gift className="w-10 h-10 text-[#eec843]" />
+              </div>
+              <h2 className="text-2xl md:text-4xl font-bold text-[#1e2c29] mb-4 leading-tight">
+                {t.surveyContest.modalTitle}
+              </h2>
+            </div>
+
+            {/* Content */}
+            <div className="p-8 md:p-12 space-y-8">
+              {/* Introduction */}
+              <p className="text-lg md:text-xl text-[#1d4c73] leading-relaxed font-medium text-center">
+                {t.surveyContest.modalIntro}
+              </p>
+
+              {/* Description */}
+              <p className="text-base md:text-lg text-[#1e2c29]/80 leading-relaxed text-center">
+                {t.surveyContest.modalDescription}
+              </p>
+
+              {/* Prize Info Card */}
+              <div className="bg-gradient-to-br from-[#f8fafc] to-[#f1f4f4] p-6 md:p-8 rounded-2xl border-2 border-[#eec843]/30 shadow-inner">
+                <h3 className="text-lg md:text-xl font-bold text-[#0dc383] mb-4 flex items-center gap-2">
+                  <span className="text-2xl">🏆</span> {t.surveyContest.prizeTitle}
+                </h3>
+                <p className="text-[#1e2c29] font-semibold text-base md:text-lg mb-4">
+                  {t.surveyContest.prizeDescription}
+                </p>
+                <div className="flex items-center justify-center gap-4 py-4">
+                  <span className="text-4xl md:text-5xl font-bold text-[#eec843]">≈ £700</span>
+                  <span className="text-sm text-[#1d4c73]/70 font-medium">VALUE</span>
+                </div>
+              </div>
+
+              {/* Deadline */}
+              <div className="text-center p-4 bg-[#1e2c29] rounded-xl">
+                <p className="text-white font-semibold text-base md:text-lg flex items-center justify-center gap-2">
+                  <span className="text-xl">⏰</span> {t.surveyContest.deadline}
+                </p>
+              </div>
+
+              {/* Typeform Embed */}
+              <div className="w-full min-h-[500px] rounded-2xl overflow-hidden border border-[#1d4c73]/10 shadow-lg">
+                <div data-tf-live="01KGZDR1GZK5EC93HKW24GP1HJ"></div>
+              </div>
+
+              {/* Optional CTA Button */}
+              <div className="text-center">
+                <p className="text-sm text-[#1d4c73]/60 mt-4">
+                  Scroll down in the form above or click Start to begin the survey
+                </p>
+              </div>
             </div>
           </div>
         </div>

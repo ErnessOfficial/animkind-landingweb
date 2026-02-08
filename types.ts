@@ -79,7 +79,17 @@ export interface LanguageContent {
     placeholder: string;
     intro: string;
     error: string;
-  }
+  };
+  surveyContest: {
+    buttonText: string;
+    modalTitle: string;
+    modalIntro: string;
+    modalDescription: string;
+    prizeTitle: string;
+    prizeDescription: string;
+    deadline: string;
+    ctaButton: string;
+  };
 }
 
 export type Language = 'en' | 'es';
