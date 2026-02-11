@@ -170,6 +170,27 @@ export const content: Record<'en' | 'es', LanguageContent> = {
       prizeDescription: "Full staff access to our updated CPD Certification Programme on Bullying & Cyberbullying Impact and Management for Primary and Secondary Schools",
       deadline: "Complete the survey before 31st May 2026 to be entered into the draw",
       ctaButton: "Start Survey"
+    },
+    socialCommitment: {
+      quote: "We believe that in an increasingly digital world, the most advanced technology is that which brings us closer to our own humanity.",
+      badge: "OUR SOCIAL COMMITMENT",
+      title: "Technology in Service of People",
+      description: "We exist to build a commercially robust business by solving critical social challenges. Our competitive advantage lies in developing solutions purpose-built to deliver both exceptional social impact and strong commercial returns.",
+      principles: [
+        {
+          title: "PREVENTION, NOT JUST REACTION",
+          description: "Moving beyond crisis management to early identification of emotional shifts via Ethical AI."
+        },
+        {
+          title: "THE HUMAN FACTOR IS IRREPLACEABLE",
+          description: "Our technology facilitates; it does not dictate. It empowers educators to make better decisions, faster."
+        },
+        {
+          title: "PROFIT WITH INTEGRITY",
+          description: "Financial sustainability ensures we can support schools for the long term. A virtuous circle where impact drives growth."
+        }
+      ],
+      ctaButton: "Read the 'Purpose & Profit' Manifesto from Animikind limited"
     }
   },
   es: {
@@ -341,6 +362,27 @@ export const content: Record<'en' | 'es', LanguageContent> = {
       prizeDescription: "Full staff access to our updated CPD Certification Programme on Bullying & Cyberbullying Impact and Management for Primary and Secondary Schools",
       deadline: "Complete the survey before 31st May 2026 to be entered into the draw",
       ctaButton: "Start Survey"
+    },
+    socialCommitment: {
+      quote: "Creemos que en un mundo cada vez más digital, la tecnología más avanzada es aquella que nos acerca a nuestra propia humanidad.",
+      badge: "NUESTRO COMPROMISO SOCIAL",
+      title: "Tecnología al Servicio de las Personas",
+      description: "Existimos para construir un negocio comercialmente robusto resolviendo desafíos sociales críticos. Nuestra ventaja competitiva radica en desarrollar soluciones diseñadas específicamente para ofrecer tanto un impacto social excepcional como sólidos retornos comerciales.",
+      principles: [
+        {
+          title: "PREVENCIÓN, NO SOLO REACCIÓN",
+          description: "Ir más allá de la gestión de crisis hacia la identificación temprana de cambios emocionales a través de IA Ética."
+        },
+        {
+          title: "EL FACTOR HUMANO ES IRREMPLAZABLE",
+          description: "Nuestra tecnología facilita; no dicta. Empodera a los educadores para tomar mejores decisiones, más rápido."
+        },
+        {
+          title: "BENEFICIO CON INTEGRIDAD",
+          description: "La sostenibilidad financiera asegura que podamos apoyar a las escuelas a largo plazo. Un círculo virtuoso donde el impacto impulsa el crecimiento."
+        }
+      ],
+      ctaButton: "Lee el Manifiesto 'Propósito y Beneficio' de Animikind limited"
     }
   },
 };

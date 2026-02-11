@@ -865,6 +865,96 @@ function App() {
         </div>
       </section>
 
+      {/* Social Commitment Section */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Background Decorative Elements */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#0dc383]/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#1d4c73]/5 rounded-full blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Two Column Layout */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+            {/* Left Column - Quote and Image */}
+            <div className="space-y-8 animate-fade-in-up">
+              {/* Quote */}
+              <blockquote className="text-2xl md:text-3xl font-bold text-[#0dc383] leading-tight italic border-l-4 border-[#0dc383] pl-6">
+                "{t.socialCommitment.quote}"
+              </blockquote>
+
+              {/* Main Image with Animation */}
+              <div className="relative group overflow-hidden rounded-[2rem] shadow-2xl border-4 border-white ring-1 ring-[#1d4c73]/10 hover:ring-[#0dc383]/30 transition-all duration-500">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0dc383]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                <img
+                  src="/images/social01.png"
+                  alt="AnimiKind Social Commitment"
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+              </div>
+            </div>
+
+            {/* Right Column - Content */}
+            <div className="space-y-8 animate-fade-in-up delay-200">
+              {/* Badge */}
+              <div className="inline-block py-2 px-6 rounded-full bg-[#1d4c73]/10 border border-[#1d4c73]/20 text-[#1d4c73] text-sm font-bold tracking-wider uppercase">
+                {t.socialCommitment.badge}
+              </div>
+
+              {/* Title */}
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1d4c73] tracking-tight leading-tight">
+                {t.socialCommitment.title}
+              </h2>
+
+              {/* Description */}
+              <p className="text-lg md:text-xl text-[#1e2c29]/80 leading-relaxed">
+                {t.socialCommitment.description}
+              </p>
+
+              {/* Principles */}
+              <div className="space-y-6">
+                {t.socialCommitment.principles.map((principle, idx) => (
+                  <div key={idx} className="flex items-start gap-4 group">
+                    {/* Icon - AnimiKind character style */}
+                    <div className="flex-shrink-0 mt-1">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0dc383]/20 to-[#0dc383]/10 flex items-center justify-center group-hover:from-[#0dc383] group-hover:to-[#0bb075] transition-all duration-300">
+                        <svg className="w-6 h-6 text-[#0dc383] group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M12 2L12 22M12 2C8 2 8 6 8 8M12 2C16 2 16 6 16 8M8 8L16 8M8 8C6 8 6 10 6 12M16 8C18 8 18 10 18 12M6 12L18 12M6 12C6 14 6 16 8 16M18 12C18 14 18 16 16 16M8 16L16 16M8 16C8 18 8 22 12 22M16 16C16 18 16 22 12 22" />
+                        </svg>
+                      </div>
+                    </div>
+
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-[#f5a623] mb-2 tracking-wide">
+                        {principle.title}
+                      </h3>
+                      <p className="text-[#1e2c29]/70 leading-relaxed">
+                        {principle.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA Button */}
+              <div className="pt-4">
+                <button className="w-full lg:w-auto px-8 py-4 rounded-full bg-[#1e2c29] text-white font-bold text-base hover:bg-[#1d4c73] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:scale-95">
+                  {t.socialCommitment.ctaButton}
+                </button>
+              </div>
+
+              {/* Small Decorative Image */}
+              <div className="flex justify-end">
+                <img
+                  src="/images/social02.png"
+                  alt="Social Commitment Icon"
+                  className="h-24 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 animate-pulse-slow"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Booking / Demo Section - Card Lift */}
       <section id="contact" className="py-24 bg-[#f1f4f4] relative">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">

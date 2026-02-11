@@ -90,6 +90,17 @@ export interface LanguageContent {
     deadline: string;
     ctaButton: string;
   };
+  socialCommitment: {
+    quote: string;
+    badge: string;
+    title: string;
+    description: string;
+    principles: {
+      title: string;
+      description: string;
+    }[];
+    ctaButton: string;
+  };
 }
 
 export type Language = 'en' | 'es';
