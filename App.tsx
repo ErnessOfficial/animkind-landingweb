@@ -937,18 +937,14 @@ function App() {
 
               {/* CTA Button */}
               <div className="pt-4">
-                <button className="w-full lg:w-auto px-8 py-4 rounded-full bg-[#1e2c29] text-white font-bold text-base hover:bg-[#1d4c73] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:scale-95">
+                <a
+                  href="/Legal/Purpose & Profit_signed.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full lg:w-auto px-8 py-4 rounded-full bg-[#1e2c29] text-white font-bold text-base hover:bg-[#1d4c73] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:scale-95 text-center"
+                >
                   {t.socialCommitment.ctaButton}
-                </button>
-              </div>
-
-              {/* Small Decorative Image */}
-              <div className="flex justify-end">
-                <img
-                  src="/images/social02.png"
-                  alt="Social Commitment Icon"
-                  className="h-24 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 animate-pulse-slow"
-                />
+                </a>
               </div>
             </div>
           </div>
