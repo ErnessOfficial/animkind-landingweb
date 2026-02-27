@@ -1010,9 +1010,6 @@ function App() {
               {t.footer.rights}
             </div>
             <div className="flex flex-wrap justify-center gap-8 font-semibold uppercase tracking-wider">
-              {t.footer.links.map((link, i) => (
-                <a key={i} href="#" className="hover:text-[#0dc383] transition-colors hover:underline underline-offset-4">{link}</a>
-              ))}
               <a
                 href="/Legal/GENDER EQUALITY PLAN (GEP) – ANIMIKIND LIMITED (2026-2028)_signed_signed.pdf"
                 target="_blank"
@@ -1041,6 +1038,14 @@ function App() {
                 title="Terms and Conditions"
               >
                 Terms and Conditions
+              </a>
+              <a
+                href="/Legal/Purpose & Profit_signed.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#0dc383] transition-colors hover:underline underline-offset-4"
+              >
+                Purpose &amp; Profit (Social Impact)
               </a>
             </div>
           </div>
