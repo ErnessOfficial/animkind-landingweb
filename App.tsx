@@ -1021,6 +1021,27 @@ function App() {
               >
                 {t.footer.gepLink}
               </a>
+              <a
+                href="https://www.iubenda.com/privacy-policy/52957714"
+                className="iubenda-white iubenda-noiframe iubenda-embed hover:text-[#0dc383] transition-colors hover:underline underline-offset-4"
+                title="Privacy Policy"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="https://www.iubenda.com/privacy-policy/52957714/cookie-policy"
+                className="iubenda-white iubenda-noiframe iubenda-embed hover:text-[#0dc383] transition-colors hover:underline underline-offset-4"
+                title="Cookie Policy"
+              >
+                Cookie Policy
+              </a>
+              <a
+                href="https://www.iubenda.com/terms-and-conditions/52957714"
+                className="iubenda-white iubenda-noiframe iubenda-embed hover:text-[#0dc383] transition-colors hover:underline underline-offset-4"
+                title="Terms and Conditions"
+              >
+                Terms and Conditions
+              </a>
             </div>
           </div>
           {/* Metricool Tracking Pixel */}
