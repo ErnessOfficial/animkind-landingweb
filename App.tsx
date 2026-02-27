@@ -12,7 +12,10 @@ import {
   Lock,
   HeartHandshake,
   Play,
-  Gift
+  Gift,
+  Facebook,
+  Instagram,
+  Linkedin
 } from 'lucide-react';
 import { content } from './content';
 import { Language } from './types';
@@ -1002,6 +1005,37 @@ function App() {
             <p className="font-semibold text-[#0dc383] text-base md:text-lg tracking-wide">
               {t.footer.contact}
             </p>
+
+            {/* Social Media Links */}
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <a
+                href="https://www.facebook.com/animikindecosystem"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-[#f1f4f4]/70 hover:bg-[#1877F2]/20 hover:text-[#1877F2] hover:border-[#1877F2]/40 transition-all duration-300"
+                title="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://instagram.com/animikind"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-[#f1f4f4]/70 hover:bg-[#E4405F]/20 hover:text-[#E4405F] hover:border-[#E4405F]/40 transition-all duration-300"
+                title="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://linkedin.com/in/ernesto-mendoza-animikind"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-[#f1f4f4]/70 hover:bg-[#0A66C2]/20 hover:text-[#0A66C2] hover:border-[#0A66C2]/40 transition-all duration-300"
+                title="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
           {/* Divider and Bottom Links */}
