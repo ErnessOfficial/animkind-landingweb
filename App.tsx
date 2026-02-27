@@ -1014,8 +1014,9 @@ function App() {
                 href="/Legal/GENDER EQUALITY PLAN (GEP) – ANIMIKIND LIMITED (2026-2028)_signed_signed.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#0dc383] transition-colors hover:underline underline-offset-4"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-[#f1f4f4]/90 hover:bg-[#0dc383]/20 hover:text-[#0dc383] hover:border-[#0dc383]/30 transition-all duration-300 text-xs normal-case tracking-normal font-semibold"
               >
+                <img src="/icons/animikind-icon.png" alt="" className="w-4 h-4 object-contain" />
                 {t.footer.gepLink}
               </a>
               <a
@@ -1043,8 +1044,9 @@ function App() {
                 href="/Legal/Purpose & Profit_signed.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#0dc383] transition-colors hover:underline underline-offset-4"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-[#f1f4f4]/90 hover:bg-[#0dc383]/20 hover:text-[#0dc383] hover:border-[#0dc383]/30 transition-all duration-300 text-xs normal-case tracking-normal font-semibold"
               >
+                <img src="/icons/animikind-icon.png" alt="" className="w-4 h-4 object-contain" />
                 Purpose &amp; Profit (Social Impact)
               </a>
             </div>
