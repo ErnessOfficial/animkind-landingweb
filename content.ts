@@ -1,4 +1,5 @@
 import { LanguageContent } from './types';
+import { cloudinaryMedia } from './data/cloudinaryMedia';
 
 export const content: Record<'en' | 'es', LanguageContent> = {
   en: {
@@ -74,10 +75,10 @@ export const content: Record<'en' | 'es', LanguageContent> = {
             "One-Click-Reporting Function",
             "Secure School Bridge via 'MySchool-LinkCode'"
           ],
-          image: "/images/screenapp.png",
-          image2: "/images/screenapp2.png",
-          image3: "/images/screenapp3.png",
-          logo: "/images/aninikindapp-logo.png"
+          image: cloudinaryMedia.platforms.appHeroScreen,
+          image2: cloudinaryMedia.platforms.appCapturePrimary,
+          image3: cloudinaryMedia.platforms.appCaptureSecondary,
+          logo: cloudinaryMedia.home.animikindAppLogo
         },
         {
           name: "School Panel",
@@ -95,9 +96,9 @@ export const content: Record<'en' | 'es', LanguageContent> = {
             "Quantitative Statistics with Real but Anonymous Data",
             "Total Control of the School Emotional Climate"
           ],
-          image: "/images/screen-schoolpanel.png",
-          image2: "/images/screen-schoolpanel2.png",
-          logo: "/images/schoolpanel-logo.png"
+          image: cloudinaryMedia.platforms.schoolPanelHeroScreen,
+          image2: cloudinaryMedia.platforms.schoolPanelCaptureFinal,
+          logo: cloudinaryMedia.home.schoolPanelLogo
         },
         {
           name: "AnimiKdemi",
@@ -114,12 +115,12 @@ export const content: Record<'en' | 'es', LanguageContent> = {
             "Available: 'Gold School Wellbeing & Safeguarding Certification' for institutions",
             "Mandatory professional training programmes are included"
           ],
-          image: "/images/screen-animikdemi.png",
-          image2: "/images/screen-animikdemi2.png",
-          image3: "/images/screen-animikdemi3.png",
-          image4: "/images/screen-animikdemi4.png",
-          logo: "/images/animikind-logo.png",
-          cpdLogo: "/images/cpd.png"
+          image: cloudinaryMedia.platforms.animikdemiCaptureOne,
+          image2: cloudinaryMedia.platforms.animikdemiCaptureTwo,
+          image3: cloudinaryMedia.platforms.animikdemiCaptureThree,
+          image4: cloudinaryMedia.platforms.animikdemiCaptureFour,
+          logo: cloudinaryMedia.home.animikdemiLogo,
+          cpdLogo: cloudinaryMedia.header.cpdLogo
         },
       ],
     },
@@ -266,10 +267,10 @@ export const content: Record<'en' | 'es', LanguageContent> = {
             "Función de Reporte con Un Solo Clic",
             "Puente Escolar Seguro vía 'Código-MiEscuela'"
           ],
-          image: "/images/screenapp.png",
-          image2: "/images/screenapp2.png",
-          image3: "/images/screenapp3.png",
-          logo: "/images/aninikindapp-logo.png"
+          image: cloudinaryMedia.platforms.appHeroScreen,
+          image2: cloudinaryMedia.platforms.appCapturePrimary,
+          image3: cloudinaryMedia.platforms.appCaptureSecondary,
+          logo: cloudinaryMedia.home.animikindAppLogo
         },
         {
           name: "School Panel",
@@ -287,9 +288,9 @@ export const content: Record<'en' | 'es', LanguageContent> = {
             "Estadísticas Cuantitativas con Datos Reales pero Anónimos",
             "Control Total del Clima Emocional Escolar"
           ],
-          image: "/images/screen-schoolpanel.png",
-          image2: "/images/screen-schoolpanel2.png",
-          logo: "/images/schoolpanel-logo.png"
+          image: cloudinaryMedia.platforms.schoolPanelHeroScreen,
+          image2: cloudinaryMedia.platforms.schoolPanelCaptureFinal,
+          logo: cloudinaryMedia.home.schoolPanelLogo
         },
         {
           name: "AnimiKdemi",
@@ -306,12 +307,12 @@ export const content: Record<'en' | 'es', LanguageContent> = {
             "Disponible: 'Certificación Oro de Bienestar y Protección Escolar' para instituciones",
             "Se incluyen programas de formación profesional obligatorios"
           ],
-          image: "/images/screen-animikdemi.png",
-          image2: "/images/screen-animikdemi2.png",
-          image3: "/images/screen-animikdemi3.png",
-          image4: "/images/screen-animikdemi4.png",
-          logo: "/images/animikind-logo.png",
-          cpdLogo: "/images/cpd.png"
+          image: cloudinaryMedia.platforms.animikdemiCaptureOne,
+          image2: cloudinaryMedia.platforms.animikdemiCaptureTwo,
+          image3: cloudinaryMedia.platforms.animikdemiCaptureThree,
+          image4: cloudinaryMedia.platforms.animikdemiCaptureFour,
+          logo: cloudinaryMedia.home.animikdemiLogo,
+          cpdLogo: cloudinaryMedia.header.cpdLogo
         },
       ],
     },
