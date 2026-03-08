@@ -142,7 +142,7 @@ const HomePage: React.FC = () => {
                             </p>
                             <div className="mt-auto">
                                 <Link
-                                    to="/ecosystem/proactive-approach/"
+                                    to="/about/why-us/"
                                     className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#0dc383] text-white font-bold text-sm hover:shadow-lg hover:shadow-[#0dc383]/30 transition-all hover:-translate-y-0.5"
                                 >
                                     {lang === 'en' ? 'READ MORE' : 'LEER MÁS'}
@@ -242,9 +242,14 @@ const HomePage: React.FC = () => {
                                     <><strong className="text-[#1e2c29]">AnimiKind Limited</strong> es una empresa EdHealthTech pionera con sede en Londres que opera en la intersección vital de las <strong className="text-[#1e2c29]">ciencias conductuales, la tecnología sanitaria avanzada y el cumplimiento normativo,</strong> enfocada en desarrollar herramientas digitales para ayudar a las escuelas en la gestión eficaz de la <strong className="text-[#1e2c29]">salvaguarda y el bienestar emocional escolar.</strong></>
                                 )}
                             </p>
-                            <p className="text-[#0dc383] font-bold text-sm text-center mb-4">
-                                {lang === 'en' ? 'Learn more about...' : 'Aprende más sobre...'}
-                            </p>
+                            <div className="flex justify-center mb-4">
+                                <Link
+                                    to="/about/social-focusing/"
+                                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1d4c73] text-white font-bold text-xs hover:bg-[#0b2340] transition-all hover:shadow-md"
+                                >
+                                    {lang === 'en' ? 'READ MORE' : 'LEER MÁS'} <ArrowRight className="w-3.5 h-3.5" />
+                                </Link>
+                            </div>
                             <div className="flex flex-wrap justify-center gap-3">
                                 {[
                                     { label: lang === 'en' ? '⚙ Who We Are' : '⚙ Quiénes Somos', href: '/about/origins/' },
