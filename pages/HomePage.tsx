@@ -414,6 +414,127 @@ const HomePage: React.FC = () => {
                 </div>
             </section>
 
+            {/* Resources Knowledge Hub Section */}
+            <section className="py-20 bg-[#f4f7fb] border-t border-[#e5eaf0]">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-10">
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-[#1e2c29] tracking-tight mb-3">
+                            Empowering School Communities: The AnimiKind Knowledge Hub
+                        </h2>
+                        <p className="text-lg md:text-xl font-semibold text-[#1d4c73] mb-4">
+                            Evidence-Based Insights for a Proactive Safeguarding Culture
+                        </p>
+                        <p className="text-[#1d4c73]/80 leading-relaxed max-w-5xl mx-auto">
+                            Stay at the forefront of educational well-being with our curated selection of professional resources. Designed specifically for Headteachers, Designated Safeguarding Leads (DSLs), and Educators, this section bridges the gap between academic research and daily school life. Our commitment to improving the emotional climate in UK schools is delivered through various formats.
+                        </p>
+                        <div className="mt-6 flex flex-wrap justify-center gap-3">
+                            {[
+                                { label: 'TheKindBlog', href: 'https://www.animikind.com/resources/blog/' },
+                                { label: 'Key Topic Briefs', href: 'https://www.animikind.com/resources/key-topics/' },
+                                { label: 'The Kind-Kit', href: 'https://www.animikind.com/resources/support-tools/' },
+                            ].map((item, idx) => (
+                                <a
+                                    key={idx}
+                                    href={item.href}
+                                    className="px-4 py-2 rounded-full bg-white border border-[#1d4c73]/20 text-[#1d4c73] text-xs font-bold tracking-wide hover:bg-[#1d4c73] hover:text-white transition-all"
+                                >
+                                    {item.label}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="grid lg:grid-cols-[1.2fr_1fr] gap-6">
+                        {/* Left big panel */}
+                        <div className="bg-white rounded-[2rem] border border-[#1d4c73]/10 p-7 md:p-8 shadow-sm hover:shadow-lg transition-shadow">
+                            <h3 className="text-2xl font-extrabold text-[#1e2c29] tracking-tight mb-3">
+                                Expert Perspectives: TheKindBlog by AnimiKind
+                            </h3>
+                            <p className="text-[#1d4c73]/80 leading-relaxed mb-6">
+                                In-depth blog articles featuring evidence-based reflections on the latest safeguarding trends and emotional well-being research.
+                            </p>
+                            <div className="rounded-2xl overflow-hidden border border-[#e5eaf0] shadow-md mb-6">
+                                <img
+                                    src="https://res.cloudinary.com/djybwowo6/image/upload/v1773149447/blog-miniatura_pzdkpf.png"
+                                    alt="TheKindBlog resources preview"
+                                    className="w-full h-auto object-cover"
+                                />
+                            </div>
+                            <div className="flex flex-wrap gap-3">
+                                <a
+                                    href="https://www.animikind.es/about-thekindblog"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0dc383] text-white font-bold text-sm hover:shadow-lg hover:shadow-[#0dc383]/30 transition-all hover:-translate-y-0.5"
+                                >
+                                    Learn more about TheKindBlog
+                                    <ArrowRight className="w-4 h-4" />
+                                </a>
+                                <a
+                                    href="https://www.animikind.es/published-articles"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1d4c73] text-white font-bold text-sm hover:bg-[#0b2340] transition-all hover:-translate-y-0.5"
+                                >
+                                    Go to the Post List
+                                    <ArrowRight className="w-4 h-4" />
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Right split panels */}
+                        <div className="grid grid-rows-2 gap-6">
+                            {/* Right top */}
+                            <div className="bg-white rounded-[2rem] border border-[#1d4c73]/10 p-7 shadow-sm hover:shadow-lg transition-shadow">
+                                <h3 className="text-xl font-extrabold text-[#1e2c29] tracking-tight mb-3">Key Topic Brief</h3>
+                                <p className="text-[#1d4c73]/80 text-sm leading-relaxed mb-5">
+                                    Visual Essentials: Clear, high-impact visual reports (PDF), thematic infographics, and video presentations that break down complex behavioural patterns into actionable classroom insights.
+                                </p>
+                                <div className="rounded-xl overflow-hidden border border-[#e5eaf0] mb-5">
+                                    <img
+                                        src="https://res.cloudinary.com/djybwowo6/image/upload/v1773152817/resourses02_oemu8n.png"
+                                        alt="Key Topic Brief visual essentials"
+                                        className="w-full h-auto object-cover"
+                                    />
+                                </div>
+                                <div className="flex flex-wrap gap-3">
+                                    <a
+                                        href="https://www.animikind.com/resources/key-topics/"
+                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0dc383] text-white font-bold text-xs hover:shadow-lg hover:shadow-[#0dc383]/30 transition-all"
+                                    >
+                                        See all Topics
+                                    </a>
+                                    <a
+                                        href="https://www.animikind.com/resources/key-topics/#video-presentations"
+                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1d4c73] text-white font-bold text-xs hover:bg-[#0b2340] transition-all"
+                                    >
+                                        Watch video
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* Right bottom */}
+                            <div className="bg-white rounded-[2rem] border border-[#1d4c73]/10 p-7 shadow-sm hover:shadow-lg transition-shadow">
+                                <h3 className="text-xl font-extrabold text-[#1e2c29] tracking-tight mb-3">The Kind Kit by AnimiKind</h3>
+                                <p className="text-[#1d4c73]/80 text-sm leading-relaxed mb-5">
+                                    Access the interactive emotional wellbeing ecosystem from here, with smooth navigation and an experience consistent with the rest of the site.
+                                </p>
+                                <div className="rounded-xl border border-[#e5eaf0] bg-[#f8fafc] p-4 mb-5 flex items-center justify-center">
+                                    <img
+                                        src="https://res.cloudinary.com/djybwowo6/image/upload/v1772859589/kindkit-logo_zcrtn7.png"
+                                        alt="The Kind-Kit by AnimiKind"
+                                        className="h-24 w-auto object-contain"
+                                    />
+                                </div>
+                                <a
+                                    href="https://www.animikind.com/resources/support-tools/"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0dc383] text-white font-bold text-sm hover:shadow-lg hover:shadow-[#0dc383]/30 transition-all"
+                                >
+                                    Take a look Now
+                                    <ArrowRight className="w-4 h-4" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* CTA Banner */}
             <section className="py-16 bg-[#1e2c29]">
                 <div className="max-w-4xl mx-auto px-4 text-center">
