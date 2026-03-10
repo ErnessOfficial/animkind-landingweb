@@ -2,8 +2,20 @@ import React, { useEffect } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { BrandIcon } from '../../components/BrandIcon';
 
-const ECOSYSTEM_VIDEO_URL = 'https://res.cloudinary.com/djybwowo6/video/upload/v1772965529/animikind_ziqjrt.mp4';
-const ECOSYSTEM_VIDEO_THUMB = 'https://res.cloudinary.com/djybwowo6/video/upload/so_1,w_1280,c_fill/v1772965529/animikind_ziqjrt.jpg';
+const videoCards = [
+    {
+        titleEn: 'A tour of the Animikind Ecosystem',
+        titleEs: 'Un recorrido por el Ecosistema AnimiKind',
+        video: 'https://res.cloudinary.com/djybwowo6/video/upload/v1772965529/animikind_ziqjrt.mp4',
+        thumb: 'https://res.cloudinary.com/djybwowo6/video/upload/so_1,w_1280,c_fill/v1772965529/animikind_ziqjrt.jpg',
+    },
+    {
+        titleEn: 'The Video-guide you need about the Mental Health Act 2025 implementation for schools.',
+        titleEs: 'The Video-guide you need about the Mental Health Act 2025 implementation for schools.',
+        video: 'https://res.cloudinary.com/djybwowo6/video/upload/v1773061509/e503e0c2-f41d-4e9c-8e37-430a9e83a935_svq5o6.mp4',
+        thumb: 'https://res.cloudinary.com/djybwowo6/video/upload/so_1,w_1280,c_fill/v1773061509/e503e0c2-f41d-4e9c-8e37-430a9e83a935_svq5o6.jpg',
+    },
+];
 
 const visualReportCards = [
     {
@@ -219,33 +231,39 @@ const KeyTopicsPage: React.FC = () => {
                         </p>
                     </div>
 
-                    <a
-                        href={ECOSYSTEM_VIDEO_URL}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="group block rounded-[2rem] overflow-hidden border border-[#dfe6ee] bg-white shadow-xl hover:shadow-2xl transition-all animate-fadeSlideUp"
-                    >
-                        <div className="aspect-video relative">
-                            <img
-                                src={ECOSYSTEM_VIDEO_THUMB}
-                                alt="A tour of the Animikind Ecosystem"
-                                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-[#061529]/35 flex items-center justify-center">
-                                <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-xl">
-                                    <BrandIcon name="ArrowRight" color="green" size={22} weight="bold" />
+                    <div className="grid md:grid-cols-2 gap-6">
+                        {videoCards.map((item, idx) => (
+                            <a
+                                key={item.video}
+                                href={item.video}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="group block rounded-[2rem] overflow-hidden border border-[#dfe6ee] bg-white shadow-xl hover:shadow-2xl transition-all animate-fadeSlideUp"
+                                style={{ animationDelay: `${idx * 90}ms` }}
+                            >
+                                <div className="aspect-video relative">
+                                    <img
+                                        src={item.thumb}
+                                        alt={es ? item.titleEs : item.titleEn}
+                                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                                    />
+                                    <div className="absolute inset-0 bg-[#061529]/35 flex items-center justify-center">
+                                        <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-xl">
+                                            <BrandIcon name="ArrowRight" color="green" size={22} weight="bold" />
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="p-5 md:p-6">
-                            <h3 className="text-[#1e2c29] text-xl font-extrabold mb-1">
-                                {es ? 'Un recorrido por el Ecosistema AnimiKind' : 'A tour of the Animikind Ecosystem'}
-                            </h3>
-                            <p className="text-[#1d4c73]/70 text-sm">
-                                {es ? 'Haz clic para abrir el video en Cloudinary.' : 'Click to open the video on Cloudinary.'}
-                            </p>
-                        </div>
-                    </a>
+                                <div className="p-5 md:p-6">
+                                    <h3 className="text-[#1e2c29] text-xl font-extrabold mb-1">
+                                        {es ? item.titleEs : item.titleEn}
+                                    </h3>
+                                    <p className="text-[#1d4c73]/70 text-sm">
+                                        {es ? 'Haz clic para abrir el video en Cloudinary.' : 'Click to open the video on Cloudinary.'}
+                                    </p>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
                 </div>
             </section>
         </div>
