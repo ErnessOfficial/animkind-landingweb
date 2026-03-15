@@ -93,8 +93,12 @@ const TheKindBlogPage: React.FC = () => {
                     <div className="grid md:grid-cols-[auto_1fr] gap-10 items-start">
                         {/* Author avatar */}
                         <div className="flex justify-center">
-                            <div className="w-28 h-28 rounded-full bg-gradient-to-br from-[#0dc383] to-[#1d4c73] flex items-center justify-center shadow-xl">
-                                <BrandIcon name="UserCircle" color="white" size={56} weight="duotone" />
+                            <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-white shadow-xl ring-2 ring-[#1d4c73]/10">
+                                <img
+                                    src="https://res.cloudinary.com/djybwowo6/image/upload/v1773593013/ernestoprifilepic_ceyp8f.png"
+                                    alt="Ernesto Mendoza profile picture"
+                                    className="w-full h-full object-cover"
+                                />
                             </div>
                         </div>
 
@@ -104,7 +108,7 @@ const TheKindBlogPage: React.FC = () => {
                                 {lang === 'en' ? 'About the Author' : 'Sobre el Autor'}
                             </span>
                             <h2 className="text-2xl md:text-3xl font-extrabold text-[#1e2c29] tracking-tight mb-4">
-                                Ernesto Mendoza
+                                Ernesto Mendoza LLM MSc
                             </h2>
                             <p className="text-[#1d4c73]/80 leading-relaxed mb-4">
                                 {lang === 'en'
