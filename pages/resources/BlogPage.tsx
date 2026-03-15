@@ -93,7 +93,7 @@ const TheKindBlogPage: React.FC = () => {
                     <div className="grid md:grid-cols-[auto_1fr] gap-10 items-start">
                         {/* Author avatar */}
                         <div className="flex justify-center">
-                            <div className="w-[8.5rem] h-[8.5rem] rounded-full overflow-hidden border-2 border-white shadow-xl ring-2 ring-[#1d4c73]/10">
+                            <div className="w-[9.5rem] h-[9.5rem] rounded-full overflow-hidden border-2 border-white shadow-xl ring-2 ring-[#1d4c73]/10">
                                 <img
                                     src="https://res.cloudinary.com/djybwowo6/image/upload/v1773593013/ernestoprifilepic_ceyp8f.png"
                                     alt="Ernesto Mendoza profile picture"
