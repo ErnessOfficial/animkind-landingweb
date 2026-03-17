@@ -22,7 +22,7 @@ export const cloudinaryMedia = {
   about: {
     whoWeAreHeroBanner: 'https://res.cloudinary.com/djybwowo6/image/upload/v1772859578/bannerweb_rlxcpf.png',
     mascot: 'https://res.cloudinary.com/djybwowo6/image/upload/v1772859607/anicuerpo_k2tzxi.png',
-    whoWeAreConfrontingLeft: 'https://res.cloudinary.com/djybwowo6/image/upload/v1773788274/home1_itjfnx.png',
+    whoWeAreConfrontingLeft: 'https://res.cloudinary.com/djybwowo6/image/upload/v1773789157/home1_itjfnx.png',
     builtOnTrustBackground: 'https://res.cloudinary.com/djybwowo6/image/upload/v1772875214/Gemini_Generated_Image_odwufxodwufxodwu_sizq0w.png',
     whyUsBanner: 'https://res.cloudinary.com/djybwowo6/image/upload/v1772859573/banner-whyus_bdwpw5.png',
   },
