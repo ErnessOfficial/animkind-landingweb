@@ -146,27 +146,6 @@ const deriveContactUpstreamError = (status, text) => {
   return text || 'Unable to submit the form.';
 };
 
-const postJsonWithRedirect = async (url, payload) => {
-  const requestInit = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-    redirect: 'manual',
-  };
-
-  const firstResponse = await fetch(url, requestInit);
-
-  if (firstResponse.status >= 300 && firstResponse.status < 400) {
-    const location = firstResponse.headers.get('location');
-    if (!location) return firstResponse;
-    return fetch(location, requestInit);
-  }
-
-  return firstResponse;
-};
-
 const handleChatRequest = async (req, res) => {
   if (!ai) {
     sendJson(res, 500, { error: 'Missing server configuration: GEMINI_API_KEY' });
@@ -233,7 +212,13 @@ const handleContactRequest = async (req, res) => {
   }
 
   try {
-    const upstream = await postJsonWithRedirect(CONTACT_APPS_SCRIPT_URL, payload);
+    const upstream = await fetch(CONTACT_APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
 
     const text = await upstream.text();
     let data;
