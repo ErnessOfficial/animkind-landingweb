@@ -134,6 +134,18 @@ const normalizeContactPayload = (body) => {
   }, {});
 };
 
+const deriveContactUpstreamError = (status, text) => {
+  if (status === 401 || status === 403) {
+    return 'The Google Apps Script endpoint is not publicly accessible. Redeploy it as a Web App with access set to Anyone before using the contact form.';
+  }
+
+  if (typeof text === 'string' && /<html|<!doctype/i.test(text)) {
+    return 'The contact endpoint returned an invalid HTML page instead of JSON. Please verify the Apps Script deployment URL.';
+  }
+
+  return text || 'Unable to submit the form.';
+};
+
 const handleChatRequest = async (req, res) => {
   if (!ai) {
     sendJson(res, 500, { error: 'Missing server configuration: GEMINI_API_KEY' });
@@ -216,11 +228,11 @@ const handleContactRequest = async (req, res) => {
     } catch {
       data = upstream.ok
         ? { result: 'success', message: text || 'Contact form submitted.' }
-        : { result: 'error', message: text || 'Contact endpoint error.' };
+        : { result: 'error', message: deriveContactUpstreamError(upstream.status, text) };
     }
 
     if (!upstream.ok || data?.result !== 'success') {
-      sendJson(res, 502, { error: data?.message || 'Unable to submit the form.' });
+      sendJson(res, 502, { error: deriveContactUpstreamError(upstream.status, data?.message) });
       return;
     }
 
