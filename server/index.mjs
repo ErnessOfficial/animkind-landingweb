@@ -10,6 +10,21 @@ const MODEL = process.env.GEMINI_MODEL || 'gemini-3-pro-preview';
 const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS || 60_000);
 const RATE_LIMIT_MAX = Number(process.env.RATE_LIMIT_MAX || 15);
 const MAX_BODY_SIZE_BYTES = 100_000;
+const CONTACT_APPS_SCRIPT_URL = process.env.CONTACT_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbyTm34c11M5FEablT9P_THH2C5qZPoQv-EbY0pKshGdH3OGo1XWyvTbqttiw1_HaMGK/exec';
+const CONTACT_KEYS = [
+  'First_Name',
+  'Last_Name',
+  'Email',
+  'Phone_Number',
+  'Job_Title',
+  'School_Name',
+  'School_Type',
+  'School_Size',
+  'Contact_Method',
+  'Your_Message',
+  'Publi_Consent',
+  'Data_Privacy_Consent',
+];
 const SYSTEM_INSTRUCTION = `
 You are 'Ani', the intelligent mascot and assistant for AnImiKind, an Emotional-AI ecosystem.
 Your tone is empathetic, supportive, professional, yet accessible (like a school counselor mixed with a friendly tech guide).
@@ -109,6 +124,16 @@ const toSafeHistory = (history) => {
     .filter(Boolean);
 };
 
+const normalizeContactPayload = (body) => {
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return null;
+
+  return CONTACT_KEYS.reduce((acc, key) => {
+    const value = body[key];
+    acc[key] = typeof value === 'string' ? value.trim() : '';
+    return acc;
+  }, {});
+};
+
 const handleChatRequest = async (req, res) => {
   if (!ai) {
     sendJson(res, 500, { error: 'Missing server configuration: GEMINI_API_KEY' });
@@ -154,6 +179,55 @@ const handleChatRequest = async (req, res) => {
   } catch (error) {
     console.error('Gemini API error:', error);
     sendJson(res, 502, { error: 'AI service temporarily unavailable.' });
+  }
+};
+
+const handleContactRequest = async (req, res) => {
+  const body = await readJsonBody(req);
+  if (body === null) {
+    sendJson(res, 413, { error: 'Request payload too large.' });
+    return;
+  }
+  if (body === undefined) {
+    sendJson(res, 400, { error: 'Invalid JSON payload.' });
+    return;
+  }
+
+  const payload = normalizeContactPayload(body);
+  if (!payload) {
+    sendJson(res, 400, { error: 'Invalid contact payload.' });
+    return;
+  }
+
+  try {
+    const upstream = await fetch(CONTACT_APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const text = await upstream.text();
+    let data;
+
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = upstream.ok
+        ? { result: 'success', message: text || 'Contact form submitted.' }
+        : { result: 'error', message: text || 'Contact endpoint error.' };
+    }
+
+    if (!upstream.ok || data?.result !== 'success') {
+      sendJson(res, 502, { error: data?.message || 'Unable to submit the form.' });
+      return;
+    }
+
+    sendJson(res, 200, { ok: true, message: data?.message || 'Contact form submitted.' });
+  } catch (error) {
+    console.error('Contact form proxy error:', error);
+    sendJson(res, 502, { error: 'Contact form service temporarily unavailable.' });
   }
 };
 
@@ -219,6 +293,15 @@ const server = createServer(async (req, res) => {
       return;
     }
     await handleChatRequest(req, res);
+    return;
+  }
+
+  if (pathname === '/api/contact') {
+    if (method !== 'POST') {
+      sendJson(res, 405, { error: 'Method not allowed.' });
+      return;
+    }
+    await handleContactRequest(req, res);
     return;
   }
 
