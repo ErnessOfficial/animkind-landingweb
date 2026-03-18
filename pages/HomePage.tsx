@@ -72,7 +72,7 @@ const HomePage: React.FC = () => {
                         {/* CTAs */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
                             <Link
-                                to="/ecosystem/proactive-approach/"
+                                to="/ecosystem/emotional-ai/"
                                 className="px-8 py-4 rounded-full bg-[#0dc383] text-white font-bold text-base hover:shadow-xl hover:shadow-[#0dc383]/30 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2"
                             >
                                 <BrandIcon name="Brain" color="white" size={18} weight="bold" />
