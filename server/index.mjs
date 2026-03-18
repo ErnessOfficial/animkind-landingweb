@@ -10,7 +10,7 @@ const MODEL = process.env.GEMINI_MODEL || 'gemini-3-pro-preview';
 const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS || 60_000);
 const RATE_LIMIT_MAX = Number(process.env.RATE_LIMIT_MAX || 15);
 const MAX_BODY_SIZE_BYTES = 100_000;
-const CONTACT_APPS_SCRIPT_URL = process.env.CONTACT_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbyTm34c11M5FEablT9P_THH2C5qZPoQv-EbY0pKshGdH3OGo1XWyvTbqttiw1_HaMGK/exec';
+const CONTACT_APPS_SCRIPT_URL = process.env.CONTACT_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwZA37VTi-tYB9bvqS0oeFxjmmX2SsmcmRHXCdquuYpA7YyDvZjwya-kmeXv6EMkv7m/exec';
 const CONTACT_KEYS = [
   'First_Name',
   'Last_Name',
@@ -146,6 +146,27 @@ const deriveContactUpstreamError = (status, text) => {
   return text || 'Unable to submit the form.';
 };
 
+const postJsonWithRedirect = async (url, payload) => {
+  const requestInit = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+    redirect: 'manual',
+  };
+
+  const firstResponse = await fetch(url, requestInit);
+
+  if (firstResponse.status >= 300 && firstResponse.status < 400) {
+    const location = firstResponse.headers.get('location');
+    if (!location) return firstResponse;
+    return fetch(location, requestInit);
+  }
+
+  return firstResponse;
+};
+
 const handleChatRequest = async (req, res) => {
   if (!ai) {
     sendJson(res, 500, { error: 'Missing server configuration: GEMINI_API_KEY' });
@@ -212,13 +233,7 @@ const handleContactRequest = async (req, res) => {
   }
 
   try {
-    const upstream = await fetch(CONTACT_APPS_SCRIPT_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
+    const upstream = await postJsonWithRedirect(CONTACT_APPS_SCRIPT_URL, payload);
 
     const text = await upstream.text();
     let data;

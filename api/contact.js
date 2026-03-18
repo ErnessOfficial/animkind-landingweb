@@ -1,4 +1,4 @@
-const CONTACT_APPS_SCRIPT_URL = process.env.CONTACT_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbyTm34c11M5FEablT9P_THH2C5qZPoQv-EbY0pKshGdH3OGo1XWyvTbqttiw1_HaMGK/exec';
+const CONTACT_APPS_SCRIPT_URL = process.env.CONTACT_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwZA37VTi-tYB9bvqS0oeFxjmmX2SsmcmRHXCdquuYpA7YyDvZjwya-kmeXv6EMkv7m/exec';
 
 const CONTACT_KEYS = [
   'First_Name',
@@ -41,6 +41,27 @@ const normalizePayload = (body) => {
   }, {});
 };
 
+const postJsonWithRedirect = async (url, payload) => {
+  const requestInit = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+    redirect: 'manual',
+  };
+
+  const firstResponse = await fetch(url, requestInit);
+
+  if (firstResponse.status >= 300 && firstResponse.status < 400) {
+    const location = firstResponse.headers.get('location');
+    if (!location) return firstResponse;
+    return fetch(location, requestInit);
+  }
+
+  return firstResponse;
+};
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -65,13 +86,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const upstream = await fetch(CONTACT_APPS_SCRIPT_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
+    const upstream = await postJsonWithRedirect(CONTACT_APPS_SCRIPT_URL, payload);
 
     const text = await upstream.text();
     let data;
