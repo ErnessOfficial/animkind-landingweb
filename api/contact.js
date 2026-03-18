@@ -1,4 +1,4 @@
-const CONTACT_APPS_SCRIPT_URL = process.env.CONTACT_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbyTm34c11M5FEablT9P_THH2C5qZPoQv-EbY0pKshGdH3OGo1XWyvTbqttiw1_HaMGK/exec';
+const CONTACT_APPS_SCRIPT_URL = process.env.CONTACT_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwZA37VTi-tYB9bvqS0oeFxjmmX2SsmcmRHXCdquuYpA7YyDvZjwya-kmeXv6EMkv7m/exec';
 
 const CONTACT_KEYS = [
   'First_Name',
@@ -19,6 +19,18 @@ const sendJson = (res, status, payload) => {
   res.status(status).json(payload);
 };
 
+const deriveUpstreamError = (status, text) => {
+  if (status === 401 || status === 403) {
+    return 'The Google Apps Script endpoint is not publicly accessible. Redeploy it as a Web App with access set to Anyone before using the contact form.';
+  }
+
+  if (typeof text === 'string' && /<html|<!doctype/i.test(text)) {
+    return 'The contact endpoint returned an invalid HTML page instead of JSON. Please verify the Apps Script deployment URL.';
+  }
+
+  return text || 'Unable to submit the form.';
+};
+
 const normalizePayload = (body) => {
   if (!body || typeof body !== 'object' || Array.isArray(body)) return null;
 
@@ -27,6 +39,27 @@ const normalizePayload = (body) => {
     acc[key] = typeof value === 'string' ? value.trim() : '';
     return acc;
   }, {});
+};
+
+const postJsonWithRedirect = async (url, payload) => {
+  const requestInit = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+    redirect: 'manual',
+  };
+
+  const firstResponse = await fetch(url, requestInit);
+
+  if (firstResponse.status >= 300 && firstResponse.status < 400) {
+    const location = firstResponse.headers.get('location');
+    if (!location) return firstResponse;
+    return fetch(location, requestInit);
+  }
+
+  return firstResponse;
 };
 
 export default async function handler(req, res) {
@@ -53,13 +86,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const upstream = await fetch(CONTACT_APPS_SCRIPT_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
+    const upstream = await postJsonWithRedirect(CONTACT_APPS_SCRIPT_URL, payload);
 
     const text = await upstream.text();
     let data;
@@ -69,11 +96,11 @@ export default async function handler(req, res) {
     } catch {
       data = upstream.ok
         ? { result: 'success', message: text || 'Contact form submitted.' }
-        : { result: 'error', message: text || 'Contact endpoint error.' };
+        : { result: 'error', message: deriveUpstreamError(upstream.status, text) };
     }
 
     if (!upstream.ok || data?.result !== 'success') {
-      sendJson(res, 502, { error: data?.message || 'Unable to submit the form.' });
+      sendJson(res, 502, { error: deriveUpstreamError(upstream.status, data?.message) });
       return;
     }
 
