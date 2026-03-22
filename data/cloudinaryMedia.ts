@@ -76,6 +76,10 @@ export const cloudinaryMedia = {
   resources: {
     kindKitLogo: 'https://res.cloudinary.com/djybwowo6/image/upload/v1772859589/kindkit-logo_zcrtn7.png',
   },
+  demo: {
+    heroImage: 'https://res.cloudinary.com/djybwowo6/image/upload/v1773857001/01201_kjuzby.png',
+    walkthroughImage: 'https://res.cloudinary.com/djybwowo6/image/upload/v1774151749/Book_Free_Demo_202603220354_cij62z.jpg',
+  },
 } as const;
 
 export default cloudinaryMedia;

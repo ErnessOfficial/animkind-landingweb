@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { BrandIcon } from '../components/BrandIcon';
 
-const BOOKING_URL = 'https://calendar.app.google/9kvFWK6CgUiNe3ov5';
+const BOOKING_URL = 'https://calendly.com/animikind/30min';
 const PRIVACY_POLICY_URL = 'https://www.iubenda.com/privacy-policy/52957714';
 const CONTACT_ENDPOINT = '/api/contact';
 

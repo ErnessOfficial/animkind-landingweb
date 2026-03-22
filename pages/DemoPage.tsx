@@ -1,138 +1,149 @@
 import React, { useEffect } from 'react';
-import { Gift } from 'lucide-react';
+import { BrandIcon } from '../components/BrandIcon';
 import { useLanguage } from '../contexts/LanguageContext';
-import { content } from '../content';
 import { cloudinaryMedia } from '../data/cloudinaryMedia';
 
-const BOOKING_URL = 'https://calendar.app.google/9kvFWK6CgUiNe3ov5';
+const BOOKING_URL = 'https://calendly.com/animikind/30min';
+
+const featureCards = [
+    {
+        title: 'Live Platform Tour',
+        description: 'A real-time look at the School Panel dashboard to visualise how risk alerts and emotional insights are presented to your team.',
+        icon: 'ChartLine' as const,
+    },
+    {
+        title: 'AnImiKind Academy Preview',
+        description: 'A walkthrough of our digital training hub, including CPD-aligned resources for staff and gamified emotional literacy courses for students.',
+        icon: 'Graduation' as const,
+    },
+    {
+        title: 'Workflow Demonstration',
+        description: 'How the student app securely connects with your safeguarding system to bridge communication gaps.',
+        icon: 'Network' as const,
+    },
+    {
+        title: 'Q&A',
+        description: 'A dedicated space to discuss integration, data privacy (GDPR), and alignment with KCSIE requirements.',
+        icon: 'HandshakeSimple' as const,
+    },
+];
 
 const DemoPage: React.FC = () => {
     const { lang } = useLanguage();
-    const t = content[lang];
+    const es = lang === 'es';
 
     useEffect(() => {
         document.title = lang === 'en'
-            ? 'Book a Demo – AnImiKind'
-            : 'Reservar Demo – AnImiKind';
+            ? 'Learn More - Free Demo – AnImiKind'
+            : 'Más Información - Demo Gratuita – AnImiKind';
     }, [lang]);
 
-    // Load Typeform embed script
-    useEffect(() => {
-        const existingScript = document.querySelector('script[src*="embed.typeform.com"]');
-        if (!existingScript) {
-            const script = document.createElement('script');
-            script.src = '//embed.typeform.com/next/embed.js';
-            script.async = true;
-            document.body.appendChild(script);
-        }
-    }, []);
-
     return (
-        <div className="pt-24">
-            {/* Demo Section */}
-            <section className="py-24 bg-[#f1f4f4] relative">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-[#1d4c73]/5 hover:shadow-[#1d4c73]/10 transition-shadow duration-500">
-                        <div className="p-10 md:p-20 text-center">
-                            <h1 className="text-4xl md:text-5xl font-bold text-[#1d4c73] mb-10 tracking-tight">
-                                {t.demoSection.title}
-                            </h1>
-
-                            <a
-                                href={BOOKING_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-block px-12 py-6 rounded-full bg-gradient-to-r from-[#0dc383] to-[#0bb075] text-white text-xl font-bold hover:shadow-2xl hover:shadow-[#0dc383]/40 transition-all transform hover:-translate-y-1 active:scale-95 mb-12"
-                            >
-                                {t.demoSection.buttonText}
-                            </a>
-
-                            <div className="text-left bg-[#f8fafc] p-8 md:p-10 rounded-[2rem] border border-[#1d4c73]/5 shadow-inner">
-                                <div className="text-sm md:text-base text-[#1d4c73] leading-relaxed whitespace-pre-line font-medium">
-                                    {t.demoSection.description}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div className="pt-16">
+            <section className="relative w-full min-h-[360px] flex items-center overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#061529] via-[#0b2340] to-[#1d4c73]" />
+                <div className="absolute inset-0 opacity-[0.08]">
+                    <svg className="w-full h-full" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice">
+                        {[[70, 90, 260, 140], [260, 140, 470, 70], [470, 70, 690, 150], [690, 150, 920, 80], [920, 80, 1120, 170], [160, 280, 420, 230], [420, 230, 690, 290]].map(([x1, y1, x2, y2], i) => (
+                            <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#0dc383" strokeWidth="1.2" strokeDasharray="6 10" />
+                        ))}
+                        {[[70, 90], [260, 140], [470, 70], [690, 150], [920, 80], [1120, 170], [160, 280], [420, 230], [690, 290]].map(([cx, cy], i) => (
+                            <circle key={i} cx={cx} cy={cy} r="3.5" fill="#0dc383" />
+                        ))}
+                    </svg>
                 </div>
-            </section>
 
-            {/* Video Section */}
-            <section className="py-16 bg-white">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#1e2c29] mb-8 text-center">
-                        {lang === 'en' ? 'Watch Our Introduction' : 'Mira Nuestra Introducción'}
-                    </h2>
-                    <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-[#1d4c73]/10">
-                        <div className="aspect-video w-full">
-                            <video
-                                src={cloudinaryMedia.components.overviewVideo}
-                                className="w-full h-full object-contain bg-black"
-                                controls
-                                preload="metadata"
+                <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16 w-full">
+                    <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
+                        <div className="text-center lg:text-left">
+                            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0dc383]/20 border border-[#0dc383]/40 text-[#0dc383] text-xs font-bold tracking-widest uppercase mb-6">
+                                <BrandIcon name="Calendar" color="green" size={13} weight="bold" />
+                                {es ? 'Sesión Guiada' : 'Guided Session'}
+                            </span>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight mb-5">
+                                {es ? 'Learn More - Free Demo' : 'Learn More - Free Demo'}
+                            </h1>
+                            <p className="text-white/78 text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                                {es
+                                    ? 'Reserva una sesión personalizada para recorrer el ecosistema AnImiKind y entender cómo apoya la detección temprana, la salvaguarda y el bienestar emocional escolar.'
+                                    : 'Book a personalised session to explore the AnImiKind ecosystem and see how it supports early identification, safeguarding, and emotional wellbeing in schools.'}
+                            </p>
+                        </div>
+
+                        <div className="relative flex justify-center lg:justify-end">
+                            <div className="absolute inset-0 blur-3xl bg-[#0dc383]/15 rounded-full scale-75" />
+                            <img
+                                src={cloudinaryMedia.demo.heroImage}
+                                alt="Learn More - Free Demo"
+                                className="relative z-10 w-full max-w-[460px] rounded-[2rem] border border-white/10 shadow-2xl object-cover"
                             />
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Survey Contest Section (migrated from modal) */}
-            <section className="py-16 bg-gradient-to-b from-white to-[#f1f4f4]">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="bg-white rounded-[2rem] shadow-2xl ring-1 ring-[#eec843]/30 overflow-hidden">
-                        {/* Header with Golden Gradient */}
-                        <div className="bg-gradient-to-r from-[#eec843] via-[#f5d76e] to-[#eec843] p-8 md:p-12 text-center">
-                            <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-lg mb-6">
-                                <Gift className="w-10 h-10 text-[#eec843]" />
+            <section className="py-16 bg-[#f4f7fb]">
+                <div className="max-w-5xl mx-auto px-6 sm:px-10 lg:px-16">
+                    <div className="bg-white rounded-[2.2rem] border border-[#dfe6ee] shadow-2xl overflow-hidden">
+                        <div className="p-8 md:p-12 text-center">
+                            <a
+                                href={BOOKING_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#0dc383] to-[#0aa872] text-white font-bold text-base shadow-lg shadow-[#0dc383]/25 hover:shadow-xl hover:shadow-[#0dc383]/35 transition-all hover:-translate-y-0.5"
+                            >
+                                <BrandIcon name="Calendar" color="white" size={18} weight="bold" />
+                                {es ? 'Book a free demo' : 'Book a free demo'}
+                            </a>
+
+                            <p className="mt-8 text-[#1d4c73]/80 text-base md:text-lg leading-relaxed max-w-4xl mx-auto">
+                                Book a personalised walkthrough of the AnImiKind ecosystem-the proactive safeguarding solution powered by ethical AI. In this screen-sharing session, we will explore how our platform helps schools identify early signs of emotional distress and bullying, ensuring robust support for your students while reducing administrative workload.
+                            </p>
+
+                            <div className="mt-8 rounded-[2rem] overflow-hidden border border-[#dfe6ee] shadow-lg">
+                                <img
+                                    src={cloudinaryMedia.demo.walkthroughImage}
+                                    alt="Book a free demo"
+                                    className="w-full h-auto object-cover"
+                                />
                             </div>
-                            <h2 className="text-2xl md:text-4xl font-bold text-[#1e2c29] mb-4 leading-tight">
-                                {t.surveyContest.modalTitle}
-                            </h2>
+
+                            <a
+                                href={BOOKING_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-8 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#1d4c73] text-white font-bold text-base hover:bg-[#0b2340] transition-all hover:-translate-y-0.5"
+                            >
+                                <BrandIcon name="Calendar" color="white" size={18} weight="bold" />
+                                {es ? 'Book a free demo' : 'Book a free demo'}
+                            </a>
                         </div>
+                    </div>
+                </div>
+            </section>
 
-                        {/* Content */}
-                        <div className="p-8 md:p-12 space-y-8">
-                            <p className="text-lg md:text-xl text-[#1d4c73] leading-relaxed font-medium text-center">
-                                {t.surveyContest.modalIntro}
-                            </p>
-                            <p className="text-base md:text-lg text-[#1e2c29]/80 leading-relaxed text-center">
-                                {t.surveyContest.modalDescription}
-                            </p>
+            <section className="pb-20 bg-[#f4f7fb]">
+                <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
+                    <div className="mb-8 text-center">
+                        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#1d4c73]/12 text-[#1d4c73] text-xs font-bold tracking-widest uppercase mb-4">
+                            <BrandIcon name="Eye" color="navy" size={13} weight="bold" />
+                            {es ? 'During this demo, you will see:' : 'During this demo, you will see:'}
+                        </span>
+                    </div>
 
-                            {/* Prize Info Card */}
-                            <div className="bg-gradient-to-br from-[#f8fafc] to-[#f1f4f4] p-6 md:p-8 rounded-2xl border-2 border-[#eec843]/30 shadow-inner">
-                                <h3 className="text-lg md:text-xl font-bold text-[#0dc383] mb-4 flex items-center gap-2">
-                                    <span className="text-2xl">🏆</span> {t.surveyContest.prizeTitle}
-                                </h3>
-                                <p className="text-[#1e2c29] font-semibold text-base md:text-lg mb-4">
-                                    {t.surveyContest.prizeDescription}
-                                </p>
-                                <div className="flex items-center justify-center gap-4 py-4">
-                                    <span className="text-4xl md:text-5xl font-bold text-[#eec843]">≈ £700</span>
-                                    <span className="text-sm text-[#1d4c73]/70 font-medium">VALUE</span>
+                    <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+                        {featureCards.map((card, index) => (
+                            <div
+                                key={card.title}
+                                className="bg-white rounded-[1.8rem] border border-[#dfe6ee] p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all"
+                            >
+                                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style={{ background: index % 2 === 0 ? 'rgba(13,195,131,0.12)' : 'rgba(29,76,115,0.1)', border: `1.5px solid ${index % 2 === 0 ? 'rgba(13,195,131,0.3)' : 'rgba(29,76,115,0.2)'}` }}>
+                                    <BrandIcon name={card.icon} color={index % 2 === 0 ? 'green' : 'navy'} size={24} weight="duotone" />
                                 </div>
+                                <h3 className="text-xl font-extrabold text-[#1e2c29] mb-3">{card.title}</h3>
+                                <p className="text-sm leading-relaxed text-[#1d4c73]/78">{card.description}</p>
                             </div>
-
-                            {/* Deadline */}
-                            <div className="text-center p-4 bg-[#1e2c29] rounded-xl">
-                                <p className="text-white font-semibold text-base md:text-lg flex items-center justify-center gap-2">
-                                    <span className="text-xl">⏰</span> {t.surveyContest.deadline}
-                                </p>
-                            </div>
-
-                            {/* Typeform Embed */}
-                            <div className="w-full min-h-[500px] rounded-2xl overflow-hidden border border-[#1d4c73]/10 shadow-lg">
-                                <div data-tf-live="01KGZDR1GZK5EC93HKW24GP1HJ"></div>
-                            </div>
-
-                            <div className="text-center">
-                                <p className="text-sm text-[#1d4c73]/60 mt-4">
-                                    {lang === 'en'
-                                        ? 'Scroll down in the form above or click Start to begin the survey'
-                                        : 'Desplázate hacia abajo en el formulario o haz clic en Inicio para comenzar la encuesta'}
-                                </p>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </section>

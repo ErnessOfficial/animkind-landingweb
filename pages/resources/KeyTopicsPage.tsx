@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { BrandIcon } from '../../components/BrandIcon';
 
@@ -62,10 +63,36 @@ const infoCards = [
 const KeyTopicsPage: React.FC = () => {
     const { lang } = useLanguage();
     const es = lang === 'es';
+    const location = useLocation();
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+    const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+
+    const autoplayTourRequested = useMemo(() => {
+        const params = new URLSearchParams(location.search);
+        return params.get('autoplay') === 'tour';
+    }, [location.search]);
+
+    const activeVideo = videoCards[activeVideoIndex];
+    const shouldAutoplayActiveVideo = autoplayTourRequested && activeVideoIndex === 0;
 
     useEffect(() => {
         document.title = es ? 'Resúmenes de Temas Clave – AnImiKind' : 'Key Topic Briefs – AnImiKind';
     }, [es]);
+
+    useEffect(() => {
+        if (!autoplayTourRequested) return;
+
+        setActiveVideoIndex(0);
+
+        const timer = window.setTimeout(() => {
+            if (videoRef.current) {
+                videoRef.current.muted = true;
+                void videoRef.current.play().catch(() => undefined);
+            }
+        }, 250);
+
+        return () => window.clearTimeout(timer);
+    }, [autoplayTourRequested]);
 
     return (
         <div className="pt-16">
@@ -231,14 +258,53 @@ const KeyTopicsPage: React.FC = () => {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {videoCards.map((item, idx) => (
+                    <div className="bg-white rounded-[2rem] border border-[#dfe6ee] shadow-xl overflow-hidden mb-8 animate-fadeSlideUp">
+                        <div className="aspect-video bg-black">
+                            <video
+                                key={activeVideo.video}
+                                ref={videoRef}
+                                src={activeVideo.video}
+                                className="w-full h-full object-contain bg-black"
+                                controls
+                                playsInline
+                                preload="metadata"
+                                autoPlay={shouldAutoplayActiveVideo}
+                                muted={shouldAutoplayActiveVideo}
+                            />
+                        </div>
+                        <div className="p-5 md:p-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                            <div>
+                                <h3 className="text-[#1e2c29] text-xl font-extrabold mb-1">
+                                    {es ? activeVideo.titleEs : activeVideo.titleEn}
+                                </h3>
+                                <p className="text-[#1d4c73]/70 text-sm">
+                                    {es
+                                        ? 'Reproduce el recurso aquí o ábrelo directamente en una nueva pestaña.'
+                                        : 'Play the resource here or open it directly in a new tab.'}
+                                </p>
+                            </div>
                             <a
-                                key={item.video}
-                                href={item.video}
+                                href={activeVideo.video}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="group block rounded-[2rem] overflow-hidden border border-[#dfe6ee] bg-white shadow-xl hover:shadow-2xl transition-all animate-fadeSlideUp"
+                                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#1d4c73] text-white font-bold text-sm hover:bg-[#0b2340] transition-all"
+                            >
+                                {es ? 'Abrir en nueva pestaña' : 'Open in new tab'}
+                                <BrandIcon name="ArrowRight" color="white" size={14} weight="bold" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                        {videoCards.map((item, idx) => (
+                            <button
+                                key={item.video}
+                                type="button"
+                                onClick={() => setActiveVideoIndex(idx)}
+                                className={`group block rounded-[2rem] overflow-hidden border bg-white shadow-xl hover:shadow-2xl transition-all animate-fadeSlideUp text-left ${activeVideoIndex === idx
+                                    ? 'border-[#0dc383] ring-2 ring-[#0dc383]/20'
+                                    : 'border-[#dfe6ee]'
+                                    }`}
                                 style={{ animationDelay: `${idx * 90}ms` }}
                             >
                                 <div className="aspect-video relative">
@@ -258,10 +324,10 @@ const KeyTopicsPage: React.FC = () => {
                                         {es ? item.titleEs : item.titleEn}
                                     </h3>
                                     <p className="text-[#1d4c73]/70 text-sm">
-                                        {es ? 'Haz clic para abrir el video en Cloudinary.' : 'Click to open the video on Cloudinary.'}
+                                        {es ? 'Haz clic para reproducir este video en la página.' : 'Click to play this video on the page.'}
                                     </p>
                                 </div>
-                            </a>
+                            </button>
                         ))}
                     </div>
                 </div>

@@ -79,7 +79,11 @@ const HomePage: React.FC = () => {
                                 {lang === 'en' ? 'Learn More About Emotional-AI' : 'Conocer la IA Emocional'}
                             </Link>
                             <Link
-                                to="/demo/"
+                                to={{
+                                    pathname: '/resources/key-topics/',
+                                    search: '?autoplay=tour',
+                                    hash: '#video-presentations',
+                                }}
                                 className="px-8 py-4 rounded-full bg-white text-[#1d4c73] font-bold text-base border border-[#1d4c73]/15 hover:bg-[#f8fafc] hover:border-[#1d4c73]/30 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2"
                             >
                                 <Play className="w-4 h-4 fill-[#1d4c73] text-[#1d4c73]" />
@@ -501,7 +505,7 @@ const HomePage: React.FC = () => {
                                         See all Topics
                                     </a>
                                     <a
-                                        href="https://www.animikind.com/resources/key-topics/#video-presentations"
+                                        href="https://www.animikind.com/resources/key-topics/?autoplay=tour#video-presentations"
                                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1d4c73] text-white font-bold text-xs hover:bg-[#0b2340] transition-all"
                                     >
                                         Watch video
