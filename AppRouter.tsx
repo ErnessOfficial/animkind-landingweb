@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 import EcosystemPage from './pages/EcosystemPage';
 import PlansPage from './pages/PlansPage';
 import DemoPage from './pages/DemoPage';
+import DemoConfirmationPage from './pages/DemoConfirmationPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -118,6 +119,8 @@ const AppRouter: React.FC = () => {
                         <Route path="/solutions/plans/" element={<PlansPage />} />
                         <Route path="/demo" element={<DemoPage />} />
                         <Route path="/demo/" element={<DemoPage />} />
+                        <Route path="/demo/confirmation" element={<DemoConfirmationPage />} />
+                        <Route path="/demo/confirmation/" element={<DemoConfirmationPage />} />
 
                         {/* Contact */}
                         <Route path="/contact" element={<ContactPage />} />
