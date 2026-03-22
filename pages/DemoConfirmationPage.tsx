@@ -137,6 +137,24 @@ const DemoConfirmationPage: React.FC = () => {
                                             </div>
                                         </div>
                                     )}
+
+                                    <div className="mt-8 rounded-[1.8rem] border border-[#cfe7dd] bg-[#eff9f4] p-6">
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-white border border-[#cfe7dd] flex-shrink-0">
+                                                <BrandIcon name="Envelope" color="green" size={22} weight="duotone" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-xl font-extrabold text-[#1e2c29] mb-2">
+                                                    {es ? 'Próximo paso' : 'Next step'}
+                                                </h3>
+                                                <p className="text-[#1d4c73]/78 leading-relaxed">
+                                                    {es
+                                                        ? 'También se ha enviado un correo electrónico con esta confirmación y con el enlace directo para acceder a la demo en la fecha y hora indicadas.'
+                                                        : 'A confirmation email has also been sent with these booking details and with the direct link to access the demo on the scheduled date and time.'}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </>
                             ) : (
                                 <div className="text-center">
