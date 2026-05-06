@@ -334,6 +334,14 @@ const EmotionalAiPage: React.FC = () => {
                     </div>
 
                     <div className="space-y-8">
+                        <div className="animate-fadeSlideUp">
+                            <img
+                                src="https://res.cloudinary.com/djybwowo6/image/upload/v1778093885/Screenshot_2026-05-06_at_19.57.13_ioe418.png"
+                                alt="UK Market Proposition Graph 1"
+                                className="w-full h-auto rounded-[2rem] shadow-2xl border border-[#e5eaf0]"
+                            />
+                        </div>
+
                         {/* Compliance tile */}
                         <div className="grid lg:grid-cols-2 gap-8 items-stretch">
                             <div className="group p-10 rounded-[2rem] bg-gradient-to-br from-[#1d4c73]/8 to-[#1d4c73]/3 border-2 border-[#1d4c73]/25 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 animate-fadeSlideUp" style={{ animationDelay: '0ms' }}>
@@ -405,6 +413,14 @@ const EmotionalAiPage: React.FC = () => {
                                     ))}
                                 </div>
                             </div>
+                        </div>
+
+                        <div className="animate-fadeSlideUp">
+                            <img
+                                src="https://res.cloudinary.com/djybwowo6/image/upload/v1778093887/Screenshot_2026-05-06_at_19.28.12_dwvmui.png"
+                                alt="UK Market Proposition Graph 2"
+                                className="w-full h-auto rounded-[2rem] shadow-2xl border border-[#e5eaf0]"
+                            />
                         </div>
 
                     </div>
